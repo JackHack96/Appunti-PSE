@@ -4,6 +4,7 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+\usepackage[dvipsnames]{xcolor}
 \usepackage{graphicx}
 \usepackage{frontespizio}
 \usepackage{microtype}
@@ -17,7 +18,12 @@
     urlcolor=black
 }
 \usepackage{listings}
-\usepackage{color}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{minted}
+
+\tikzstyle{block}  =  [draw,  rectangle,  minimum  height=2em,  minimum  width=4em]
+\tikzstyle{input} = [coordinate] \tikzstyle{output} = [coordinate]
 
 \begin{document}
 \begin{frontespizio}
@@ -36,7 +42,7 @@
 \newpage
 
 \chapter*{Prefazione}
-Questa dispensa si basa sugli appunti presi da Linda Sacchetto e Leonardo Testolin durante il
+Questa dispensa si basa sugli appunti di Linda Sacchetto e Leonardo Testolin durante il
 corso di \textit{Progettazione di Sistemi Embedded} dell'anno accademico 2018/2019.
 Nonostante sia stata revisionata in corso di scrittura, potrebbe contenere errori di vario tipo.
 In tal caso potete segnalarli inviando una mail all'indirizzo \href{mailto:matteoiervasi@gmail.com}{matteoiervasi@gmail.com}.
@@ -82,8 +88,8 @@ I vincoli principali ai quali bisogna attenersi durante la progettazione di un s
 Nel momento in cui ci accingiamo a pensare a come si progetta un sistema embedded, salta subito alla mente un
 problema, ovvero come faccio a verificarne il corretto funzionamento?
 Quando progettiamo del software, abbiamo a disposizione una miriade di strumenti per assicurarci di tenere il numero
-dei bug il più basso possibile: debugger, unit testing, analisi statica, ecc.
-Sull'hardware invece non possiamo certamente metterci a rifare ogni volta che sbagliamo, ricordiamoci che dobbiamo
+dei bug il più basso possibile: \textit{debugger}, \textit{unit testing}, \textit{analisi statica}, ecc.
+In hardware invece non possiamo certamente metterci a rifare tutto ogni volta che sbagliamo, ricordiamoci che dobbiamo
 tenere i costi bassi! Si pone quindi il problema della \textit{simulazione}, strumento fondamentale per la verifica
 del nostro sistema. Spesso infatti l'architettura di riferimento è differente da quella del calcolatore che usiamo
 per lo sviluppo (caso tipico: noi sviluppiamo su architettura X86 per un'architettura di destinazione ARM).
@@ -91,22 +97,234 @@ per lo sviluppo (caso tipico: noi sviluppiamo su architettura X86 per un'archite
 \smallskip
 In generale, un sistema embedded è costituito dalle seguenti componenti:
 \begin{itemize}
-	\item Piattaforma hardware\\
-    Oltre al microprocessore, vi sono una serie di altre componenti
-	\item Componenti software\\
-    Il software è monolitico, quando infatti devo accendere il sistema, il software deve eseguire in automatico.
-    Possono esserci casi in cui viene caricato un intero sistema operativo e nella maggioranza dei casi in cui
-    serve un OS si fa riferimento a Linux.
-	\item Componenti analogiche (es. sensori e trasduttori)\\
+	\item \textbf{Piattaforma hardware}\\
+    Oltre al microprocessore, vi sono una serie di altre componenti.
+	\item \textbf{Componenti software}\\
+    Il software è monolitico: quando accendo il sistema, si esegue in automatico.
+    Possono anche esserci casi in cui è necessario caricare un intero sistema operativo, e nella maggioranza di essi si fa riferimento a Linux.
+	\item \textbf{Componenti analogiche} (es. sensori e trasduttori)\\
     Naturalmente se il nostro sistema dovrà interagire con l'ambiente esterno dovremmo introdurre componenti analogiche.
 \end{itemize}
 Il trend attuale è di portare tutto ciò in un singolo chip (SoC - \textit{System on a Chip}), dove microprocessore,
 memoria e altre componenti vengono montate su un singolo chip, collegate da un bus. Esempi di SoC moderni sono i
 Qualcomm\textsuperscript{\tiny\textregistered} Snapdragon o i Samsung\textsuperscript{\tiny\textregistered} Exynos.
+Esiste anche un'alternativa, dove le componenti invece di trovarsi in un unico chip si trovano in una singola
+board (SoB - \textit{System on a Board}).
 
-\section{SystemC Design Flow}
+Queste due tecnologie hanno uno scopo in comune: indurre al riutilizzo di componenti già esistenti per
+ridurre il più possibile il \textit{time to market} (figura \ref{img:time-to-market}), ovvero il tempo che trascorre
+dall'inizio della progettazione all'immissione nel mercato. Più questo tempo è lungo, meno probabilità si ha di riuscire a vendere
+il prodotto in quantità tale da coprire i costi di sviluppo.
+Per questo motivo non si può minimamente pensare di sviluppare un sistema embedded partendo da zero, in quanto il tempo di sviluppo
+sarebbe improponibile.
+
+\begin{figure}
+	\centering
+	\caption{Rappresentazione del rapporto costo produzione - guadagno}
+	\label{img:time-to-market}
+	\begin{tikzpicture}
+		\centering
+		\begin{axis}[
+			axis lines=left,
+			width=\textwidth,
+			height=200pt,
+            xmin=0,
+			xlabel=Tempo,
+			ylabel=Costo,
+            yticklabels={,,},
+            xticklabels={,,},
+		]
+		\addplot[
+			domain=0:7,
+			samples=150,
+			color=blue,
+			line width=1.25pt,
+		]{5*ln(x-1/2)+3};
+        \addlegendentry{Costo di produzione}
+        \addplot[
+            domain=1.25:7,
+   			samples=150,
+   			color=red,
+   			line width=1.25pt,
+        ]{20/ln(x)-20};
+        \addlegendentry{Prezzo di vendita}
+		\end{axis}
+        \draw [dashed] (0.9,0) node [below]{$t_0$};
+        \draw [dashed] (2,0) node [below]{$t_m$} -- (2,5.5);
+        \draw [dashed] (3.6,0) -- (3.6,1.4);
+        \draw [<->](2,0.70) -- (3.6,0.70) node [below, midway] {$\Delta_t$};
+        \draw [->] (0.9,-0.45) -- (1,-1) node [below] {Inizio realizzazione oggetto};
+        \draw [->] (2,-0.45) -- (4,-1.5) node [below] {Inizio vendita oggetto};
+	\end{tikzpicture}
+\end{figure}
+
+\section{Co-design di sistemi embedded}
+Viste le ristrettezze imposte sui tempi dal mercato, è necessario ricorrere al co-design di hardware e software.
+Si parte quindi con una descrizione generale del sistema, magari aiutandosi con un prototipo, dopodiché fatte le verifiche su di esso si procede con la separazione di
+hardware e software, ricordandomi che devo ‘‘riciclare’’ il più possibile le parti già esistenti, e incomincio lo sviluppo o l'eventuale adattamento.
+Durante la progettazione della parte hardware, posso decidere di affiancare l'eventuale processore da un co-processore, che svolge un compito
+specifico a seconda di cosa stiamo progettando. Il co-processore può essere anche una GPU.
+
+Le tecnologie più usate per la progettazione di hardware sono:
+\begin{itemize}
+	\item Microcontrollore standard o microprocessore
+	\item ASIC (con o senza co-processore a seconda dei casi)
+	\item FPGA
+\end{itemize}
+mentre per il software si possono utilizzare diversi linguaggi di programmazione (generalmente però si scelgono C/C++).
+
+Naturalmente ci serve uno strumento per la verifica del nostro sistema, ci serve quindi co-simulare hardware e software.
+Si può fare su diversi livelli, ognuno con i suoi pregi e i suoi difetti.
+\begin{itemize}
+	\item \textbf{Gate level}\\
+	Viene simulato il tutto a livello di porte logiche, ovvero il più basso livello
+	possibile. Questa è la simulazione più lenta in assoluto.
+	\item \textbf{RTL (Register Transfer Level)}
+	La rappresentazione in questo caso è vista come un flusso di informazioni che
+	percorre il sistema, i cui risultati vengono salvati nei registri. Anche questa
+	simulazione è lenta poiché molto vicina all'hardware.
+	Essa può essere \textit{cycle accurate}, nella quale l'unità minima di elaborazione è il ciclo
+	di clock, e considera come importante quello che avviene all'inizio e alla fine di esso,
+	oppure può essere \textit{instruction accurate}, nella quale l'unità minima diventa la singola istruzione.
+	\item \textbf{Behavioural}\\
+	Questa rappresentazione descrive le funzionalità facendo una stima dei cicli di clock che impiega
+	\item \textbf{Transactional}\\
+	In questo caso non ho nemmeno il dettaglio della funzionalità, ma vado solamente a descrivere
+	le interazioni tra i singoli moduli hardware. La simulazione in questa modalità è rapida.
+\end{itemize}
+
+Ogni livello di descrizione ha dei linguaggi più adatti di altri nonostante siano stati fatti diversi
+sforzi di crearne uno adatto a tutti.
+A livello RT, quelli più diffusi sono \textit{VHDL} e \textit{Verilog}.
+\textit{SystemC}, nonostante sia in grado di scrivere più o meno bene a livello RT, mostra la sua
+potenza espressiva agli altri livelli.
+
+\chapter{SystemC}
+Gli \textit{Hardware Description Languages} (HDL) sono nati per risolvere una serie di problemi.
+Prima di essi l'hardware veniva progettato a mano e senza alcuna procedura standardizzata. Questo
+approccio però è prono ad errori e soprattutto incompatibile con le tempistiche richieste al giorno d'oggi.
+A differenza di quando codifico un algoritmo in software, nel quale mi basta scrivere del codice in 
+un certo linguaggi di programmazione, magari \textit{multiplatform} senza preoccuparmi di dove e come
+verrà eseguito, quando progetto hardware devo, oltre all'algoritmo in sè, codificare l'architettura
+nel quale verrà eseguito.
+
+Prendiamo in esempio un programma scritto in linguaggio C e osserviamo le assunzioni che facciamo senza nemmeno pensare:
+
+\noindent\begin{tabular}{p{0.5\textwidth} r}
+\begin{minipage}[t]{0.5\textwidth}
+\begin{minted}[tabsize=2]{c}
+#include <stdio.h>
+
+int gcd(int xi, int yi){
+   	int x, y, temp;
+   	
+   	x = xi;
+   	y = yi;
+   	while(x > 0){
+   		if(x <= y){
+   			temp = y;
+   			y = x;
+   			x = temp;
+   		}
+   		x = x - y;
+   	}
+   	return(y);
+}
+\end{minted}
+\end{minipage}
+& \begin{minipage}[t]{0.5\textwidth}
+\begin{minted}[tabsize=2]{c}
+
+int main(int argc, char *argv[]){
+   	int xi, yi, ou;
+    
+    scanf("%d %d", &xi, &yi);
+    ou = gcd(xi, yi);
+    printf("%d\n", ou);
+    
+    return 0;
+}
+\end{minted}
+\end{minipage}
+\end{tabular}
+I requisiti hardware per poter eseguire questo programma sono:
+\begin{itemize}
+    \item \textbf{Input/Output}\\
+    \textit{SW}: \texttt{printf}, \texttt{scanf}, ...\\
+    \textit{HW}: interfacce di I/O
+    \item \textbf{Temporizzazione}\\
+    \textit{SW}: istruzioni vengono eseguite alla velocità del ciclo di clock\\
+    \textit{HW}: devono essere definiti uno o più segnali di clock (e le istruzioni possono impiegare diversi cicli di clock)
+    \item \textbf{Dimensioni variabili}\\
+    \textit{SW}: dimensioni implicite sono nascoste\\
+    \textit{HW}: devo tenere conto delle dimensioni, in quanto sto creando di fisico che poi corrisponderà alla variabile
+    \item \textbf{Operazioni}\\
+    \textit{SW}: esistono librerie per ogni tipo di operazioni\\
+    \textit{HW}: difficili dato che devo fare un circuito apposito. Se poi vogliamo anche i numeri in virgola mobile, il circuito aumenta molto in complessità
+    \item \textbf{Identificazione elementi di memoria}\\
+    \textit{SW}: non guardo se una variabile va nei registri o nella RAM, la uso e basta\\
+    \textit{HW}: devo sapere che spazio andrà a occupare, c'è una bella differenza tra registro e memoria
+    \item \textbf{Sincronizzazione moduli}\\
+    \textit{SW}: spesso lavoro in maniera sequenziale\\
+    \textit{HW}: per com'è strutturato, l'hardware lavora tantissimo in parallelo        
+\end{itemize}
+Quando scriviamo l'algoritmo software facciamo quindi molte assunzioni, del tutto legittime, ma che non possiamo di certo dare per 
+scontato quando invece progettiamo un modulo hardware.
+
+\noindent
+La prima cosa di cui bisogna preoccuparsi quando si progetta un modulo hardware è definire le porte di ingresso e
+di uscita. Una volta completata l'identificazione delle porte, bisogna individuare l'architettura di riferimento, 
+nel nostro caso FSMD, ovvero una macchina a stati finiti combinata con un datapath. Nella definizione della FSM e del DP,
+bisogna tenere conto degli eventuali vincoli: se ad esempio mi interessa un circuito veloce posso permettermi un DP
+più grande, mentre se voglio che il mio circuito occupi il minor spazio possibile dovrò allargare la FSM.
+Riportiamo di seguito un possibile diagramma del modulo \texttt{gcd} e un'implementazione in VHDL (non RTL).
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        \draw [->] (0,2) node[above]{XI} -- (1,2);
+        \draw [->] (0,1) node[above]{YI} -- (1,1);
+        \draw [<-] (2,3) -- (2,4) node[left]{CLOCK};
+        \draw [<-] (4,3) -- (4,4) node[left]{RESET};
+    
+        \draw [fill=SkyBlue] (1,0) rectangle (5,3) node[pos=.5] {GCD};
+        
+        \draw [->] (5,1.5) -- (6,1.5) node [above] {OUT};
+    \end{tikzpicture}
+    \label{img:gcd_scheme}
+    \caption{Schema di un modulo GCD}
+\end{figure}
+\begin{minted}[tabsize=2]{VHDL}
+ENTITY gcd IS
+    PORT (clock, reset : IN bit;
+        xi, yi : IN unsigned (size-1 DOWNTO 0);
+        out : OUT unsigned (size-1 DOWNTO 0)
+    );
+END gcd;
+\end{minted}
+\begin{minted}[tabsize=2]{VHDL}
+ARCHITECTURE behavioral OF gcd IS
+BEGIN
+    PROCESS
+        VARIABLE x, y, temp : unsigned (size-1 DOWNTO 0);
+    BEGIN
+    WAIT UNTIL clock = '1';
+    x := xi;
+    y := yi;
+    WHILE (x > 0) LOOP
+        IF (x <= y) THEN
+            temp := y;
+            y := x;
+            x := temp;
+        END IF;
+        x := x - y;
+    END LOOP;
+    ou <= y;
+    END PROCESS;
+END behavioral;
+\end{minted}
+
 \section{SystemC TLM}
 \section{SystemC AMS}
-\section{VHDL}
+\chapter{VHDL}
 
 \end{document}
