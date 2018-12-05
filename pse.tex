@@ -272,7 +272,7 @@ Quando scriviamo l'algoritmo software facciamo quindi molte assunzioni, del tutt
 scontato quando invece progettiamo un modulo hardware.
 
 \noindent
-La prima cosa di cui bisogna preoccuparsi quando è definire le porte di ingresso e di uscita. Una volta completata
+La prima cosa di cui bisogna preoccuparsi quando è definire le porte d'ingresso e di uscita. Una volta completata
 l'identificazione delle porte, bisogna individuare la modalità con cui andremo a progettare il modulo,
 che nel nostro caso sarà una FSMD, ovvero una macchina a stati finiti combinata con un datapath. 
 Nella definizione della FSM e del DP, bisogna tenere conto degli eventuali vincoli: se ad esempio mi interessa un circuito veloce posso permettermi un DP più grande, mentre se voglio che il mio circuito occupi il minor spazio possibile dovrò allargare la FSM.
@@ -313,35 +313,31 @@ END gcd;
     \draw[overlay, ->] ($(pic cs:gcd_output)+(0,0.1)$) -- ($(pic cs:gcd_output)+(1,0.1)$) node [right]{porta di output};
     \draw[overlay, ->] ($(pic cs:gcd_varsize)+(0,-0.05)$) -- ($(pic cs:gcd_varsize)+(0,-0.5)$) node [below]{dimensione variabile};
 \end{tikzpicture}
-
-\pagebreak\noindent
 mentre questa è la descrizione comportamentale del modulo hardware:
-\begin{minted}[tabsize=2, escapeinside=??]{VHDL}
+\begin{minted}[tabsize=2,lineos]{VHDL}
 ARCHITECTURE behavioral OF gcd IS
 BEGIN
     PROCESS
         VARIABLE x, y, temp : unsigned (size-1 DOWNTO 0);
     BEGIN
-    WAIT UNTIL clock = '1'; ?\tikzmark{S0}?
+    WAIT UNTIL clock = '1'; 
     x := xi;
     y := yi;
-    WHILE (x > 0) LOOP ?\tikzmark{S1}?
+    WHILE (x > 0) LOOP
         IF (x <= y) THEN
             temp := y;
             y := x;
             x := temp;
         END IF;
-        x := x - y; ?\tikzmark{S2}?
+        x := x - y;
     END LOOP;
-    ou <= y; ?\tikzmark{S3}?
+    ou <= y;
     END PROCESS;
 END behavioral;
 \end{minted}
-\begin{tikzpicture}[remember picture]
-\draw[overlay, ->, , red] (0,0) -- (pic cs:S0);
-\end{tikzpicture}
 
 \chapter{SystemC}
+
 
 \section{SystemC TLM}
 \section{SystemC AMS}
