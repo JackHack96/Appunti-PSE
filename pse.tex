@@ -336,19 +336,12 @@ BEGIN
 END behavioral;
 \end{minted}
 
-\begin{minted}[linenos=true,breaklines,numberblanklines=false]{bash}
-    {function h()
-    #
-    # Type 'h cmd' instead of 'cmd --help'
-    #
-
-    {
-    echo "--help" | xargs $1
-    }
-    \end{minted}
-
 \chapter{SystemC}
-
+SystemC è un insieme di classi e macro del linguaggio C++ che forniscono un ambiente di simulazione \textit{event-driven}.
+Queste classi permettono al progettista di simulare processi concorrenti,  che possono anche comunicare in un ambiente
+real-time simulato, utilizzando segnali di qualsiasi tipo fornito da C++/SystemC o dall'utente.
+Sebbene sia per certi versi simile a linguaggi come VHDL o Verilog, è più corretto definire SystemC un linguaggio di
+modellazione di sistemi.
 
 \section{SystemC TLM}
 \section{SystemC AMS}
