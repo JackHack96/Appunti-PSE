@@ -210,8 +210,6 @@ Quando progettiamo hardware invece non possiamo permetterci questo lusso in quan
 non c'è, siamo noi a costruirla.
 
 Prendiamo in esempio un programma scritto in linguaggio C e osserviamo le assunzioni che facciamo senza nemmeno pensare.\\
-\noindent\begin{tabular}{p{0.5\textwidth} r}
-\begin{minipage}[t]{0.5\textwidth}
 \begin{minted}[tabsize=2]{c}
 #include <stdio.h>
 
@@ -230,10 +228,6 @@ int gcd(int xi, int yi){
    	}
    	return(y);
 }
-\end{minted}
-\end{minipage}
-& \begin{minipage}[t]{0.5\textwidth}
-\begin{minted}[tabsize=2]{c}
 
 int main(int argc, char *argv[]){
    	int xi, yi, ou;
@@ -245,8 +239,6 @@ int main(int argc, char *argv[]){
     return 0;
 }
 \end{minted}
-\end{minipage}
-\end{tabular}
 I requisiti hardware per poter eseguire questo programma sono:
 \begin{itemize}
     \item \textbf{Input/Output}\\
@@ -342,6 +334,9 @@ Queste classi permettono al progettista di simulare processi concorrenti,  che p
 real-time simulato, utilizzando segnali di qualsiasi tipo fornito da C++/SystemC o dall'utente.
 Sebbene sia per certi versi simile a linguaggi come VHDL o Verilog, è più corretto definire SystemC un linguaggio di
 modellazione di sistemi.
+
+In SystemC è possibile descrivere sistemi hardware e software a diversi livelli di astrazione, permettendo quindi il co-design. Lo standard è definito dalla \textit{Open SystemC Initiative} (OSCI), ora \textit{Accellera}, ed è stato
+approvato dall'IEEE.
 
 \section{SystemC TLM}
 \section{SystemC AMS}
