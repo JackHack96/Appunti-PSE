@@ -20,10 +20,9 @@
 \usepackage{listings}
 \usepackage{tikz}
 \usepackage{pgfplots}
+\usetikzlibrary{tikzmark}
+\usetikzlibrary{calc}
 \usepackage{minted}
-
-\tikzstyle{block}  =  [draw,  rectangle,  minimum  height=2em,  minimum  width=4em]
-\tikzstyle{input} = [coordinate] \tikzstyle{output} = [coordinate]
 
 \begin{document}
 \begin{frontespizio}
@@ -199,17 +198,18 @@ A livello RT, quelli più diffusi sono \textit{VHDL} e \textit{Verilog}.
 \textit{SystemC}, nonostante sia in grado di scrivere più o meno bene a livello RT, mostra la sua
 potenza espressiva agli altri livelli.
 
-\chapter{SystemC}
+\section{Hardware description languages}
 Gli \textit{Hardware Description Languages} (HDL) sono nati per risolvere una serie di problemi.
 Prima di essi l'hardware veniva progettato a mano e senza alcuna procedura standardizzata. Questo
 approccio però è prono ad errori e soprattutto incompatibile con le tempistiche richieste al giorno d'oggi.
-A differenza di quando codifico un algoritmo in software, nel quale mi basta scrivere del codice in 
-un certo linguaggi di programmazione, magari \textit{multiplatform} senza preoccuparmi di dove e come
-verrà eseguito, quando progetto hardware devo, oltre all'algoritmo in sè, codificare l'architettura
-nel quale verrà eseguito.
+Quando progetto del software mi basta pensare all'algoritmo astratto e codificarlo in un preciso linguaggio
+di programmazione. Può anche succedere che il linguaggio che utilizzo sia multipiattaforma, per cui non mi dovrò
+minimamente preoccupare di dove e come verrà eseguito, poiché so che a prescindere dall'architettura sul quale
+verrà eseguito darà sempre lo stesso risultato.
+Quando progettiamo hardware invece non possiamo permetterci questo lusso in quanto l'architettura semplicemente
+non c'è, siamo noi a costruirla.
 
-Prendiamo in esempio un programma scritto in linguaggio C e osserviamo le assunzioni che facciamo senza nemmeno pensare:
-
+Prendiamo in esempio un programma scritto in linguaggio C e osserviamo le assunzioni che facciamo senza nemmeno pensare.\\
 \noindent\begin{tabular}{p{0.5\textwidth} r}
 \begin{minipage}[t]{0.5\textwidth}
 \begin{minted}[tabsize=2]{c}
@@ -272,12 +272,11 @@ Quando scriviamo l'algoritmo software facciamo quindi molte assunzioni, del tutt
 scontato quando invece progettiamo un modulo hardware.
 
 \noindent
-La prima cosa di cui bisogna preoccuparsi quando si progetta un modulo hardware è definire le porte di ingresso e
-di uscita. Una volta completata l'identificazione delle porte, bisogna individuare l'architettura di riferimento, 
-nel nostro caso FSMD, ovvero una macchina a stati finiti combinata con un datapath. Nella definizione della FSM e del DP,
-bisogna tenere conto degli eventuali vincoli: se ad esempio mi interessa un circuito veloce posso permettermi un DP
-più grande, mentre se voglio che il mio circuito occupi il minor spazio possibile dovrò allargare la FSM.
-Riportiamo di seguito un possibile diagramma del modulo \texttt{gcd} e un'implementazione in VHDL (non RTL).
+La prima cosa di cui bisogna preoccuparsi quando è definire le porte di ingresso e di uscita. Una volta completata
+l'identificazione delle porte, bisogna individuare la modalità con cui andremo a progettare il modulo,
+che nel nostro caso sarà una FSMD, ovvero una macchina a stati finiti combinata con un datapath. 
+Nella definizione della FSM e del DP, bisogna tenere conto degli eventuali vincoli: se ad esempio mi interessa un circuito veloce posso permettermi un DP più grande, mentre se voglio che il mio circuito occupi il minor spazio possibile dovrò allargare la FSM.
+Riportiamo di seguito un possibile diagramma del modulo \texttt{gcd}.
 \begin{figure}[h]
     \centering
     \begin{tikzpicture}
@@ -293,35 +292,50 @@ Riportiamo di seguito un possibile diagramma del modulo \texttt{gcd} e un'implem
     \label{img:gcd_scheme}
     \caption{Schema di un modulo GCD}
 \end{figure}
-\begin{minted}[tabsize=2]{VHDL}
+\\
+Questa è una possibile implementazione in VHDL del modulo GCD, descritta dal punto di vista ingressi-uscite:
+\begin{minted}[tabsize=2, escapeinside=??]{VHDL}
 ENTITY gcd IS
     PORT (clock, reset : IN bit;
-        xi, yi : IN unsigned (size-1 DOWNTO 0);
-        out : OUT unsigned (size-1 DOWNTO 0)
+        xi : IN unsigned (size-1 DOWNTO 0); ?\tikzmark{gcd_inputs}?
+        yi : IN unsigned (size-1 DOWNTO 0); ?\tikzmark{gcd_outputs}?
+        out : OUT unsigned (si?\tikzmark{gcd_varsize}?ze-1 DOWNTO 0)
     );
 END gcd;
 \end{minted}
-\begin{minted}[tabsize=2]{VHDL}
+\begin{tikzpicture}[remember picture]
+    \draw[overlay, ->] (5,0) node [below]{dimensione variabile} -- (pic cs:gcd_varsize);
+    \draw[overlay, ->] (pic cs:gcd_inputs) -- (d)
+\end{tikzpicture}
+
+\pagebreak\noindent
+mentre questa è la descrizione comportamentale del modulo hardware:
+\begin{minted}[tabsize=2, escapeinside=??]{VHDL}
 ARCHITECTURE behavioral OF gcd IS
 BEGIN
     PROCESS
         VARIABLE x, y, temp : unsigned (size-1 DOWNTO 0);
     BEGIN
-    WAIT UNTIL clock = '1';
+    WAIT UNTIL clock = '1'; ?\tikzmark{S0}?
     x := xi;
     y := yi;
-    WHILE (x > 0) LOOP
+    WHILE (x > 0) LOOP ?\tikzmark{S1}?
         IF (x <= y) THEN
             temp := y;
             y := x;
             x := temp;
         END IF;
-        x := x - y;
+        x := x - y; ?\tikzmark{S2}?
     END LOOP;
-    ou <= y;
+    ou <= y; ?\tikzmark{S3}?
     END PROCESS;
 END behavioral;
 \end{minted}
+\begin{tikzpicture}[remember picture]
+\draw[overlay, ->, , red] (0,0) -- (pic cs:S0);
+\end{tikzpicture}
+
+\chapter{SystemC}
 
 \section{SystemC TLM}
 \section{SystemC AMS}
