@@ -358,7 +358,12 @@ Nel \textit{Register Transfer Level} si può descrivere il funzionamento di un c
 registri e operazioni logiche.
 Quando si progettano sistemi complessi, viene naturale dividere il progetto in sotto parti, che chiamiamo \textit{moduli},
 ognuno dei quali svolge una specifica funzione e comunica con altri. In SystemC i moduli sono rappresentati nientemeno che 
-da delle classi C++, e si specificano da
+da delle classi C++ e si specificano con la keywork \textit{\texttt{SC\_MODULE}}.
+Un modulo contiene la definizione delle porte di input e di output, i segnali interni e la loro eventuale inizializzazione,
+e i sottomoduli, che sono rappresentati nella loro forma minima dalle funzioni.
+Inoltre ogni modulo contiene un metodo costruttore, identificato dalla macro \textit{\texttt{SC\_CTOR}}, che contiene
+la dichiarazione di tutti i processi contenuti nel modulo e la sensitivity list associata a tali metodi, che specifica
+i segnali ai quali ciascun metodo deve reagire.
 \section{SystemC TLM}
 \section{SystemC AMS}
 \chapter{VHDL}
