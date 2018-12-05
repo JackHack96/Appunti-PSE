@@ -297,15 +297,16 @@ Questa è una possibile implementazione in VHDL del modulo GCD, descritta dal pu
 \begin{minted}[tabsize=2, escapeinside=??]{VHDL}
 ENTITY gcd IS
     PORT (clock, reset : IN bit;
-        xi : IN unsigned (size-1 DOWNTO 0); ?\tikzmark{gcd_inputs}?
-        yi : IN unsigned (size-1 DOWNTO 0); ?\tikzmark{gcd_outputs}?
-        out : OUT unsigned (si?\tikzmark{gcd_varsize}?ze-1 DOWNTO 0)
+        xi : IN unsigned (size-1 DOWNTO 0); ?\tikzmark{gcd_input1}?
+        yi : IN unsigned (size-1 DOWNTO 0); ?\tikzmark{gcd_input2}?
+        out : OUT unsigned (si?\tikzmark{gcd_varsize}?ze-1 DOWNTO 0) ?\tikzmark{gcd_output}?
     );
 END gcd;
 \end{minted}
 \begin{tikzpicture}[remember picture]
     \draw[overlay, ->] (5,0) node [below]{dimensione variabile} -- (pic cs:gcd_varsize);
-    \draw[overlay, ->] (pic cs:gcd_inputs) -- ()
+    \draw[overlay, ->] ($(pic cs:gcd_inputs)+(0,0.1)$) -- ($(pic cs:gcd_inputs)+(2,-0.1)$) node [right]{porte di input};
+    \draw[overlay, ->] ($(pic cs:gcd_outputs)+(0,0.1)$) -- ($(pic cs:gcd_inputs)+(2,-0.1)$);
 \end{tikzpicture}
 
 \pagebreak\noindent
