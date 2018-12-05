@@ -336,7 +336,23 @@ Sebbene sia per certi versi simile a linguaggi come VHDL o Verilog, è più corr
 modellazione di sistemi.
 
 In SystemC è possibile descrivere sistemi hardware e software a diversi livelli di astrazione, permettendo quindi il co-design. Lo standard è definito dalla \textit{Open SystemC Initiative} (OSCI), ora \textit{Accellera}, ed è stato
-approvato dall'IEEE.
+approvato dall'IEEE. Le caratteristiche salienti del SystemC sono:
+\begin{itemize}
+    \item \textbf{Concorrenza}\\
+    Processi sincroni e asincroni
+    \item \textbf{Comunicazione}\\
+    IPC tramite segnali e canali
+    \item \textbf{Nozione di tempo}\\
+    Possibilità di avere cicli di clock multipli con fasi arbitrarie
+    \item \textbf{Reattività}\\
+    Possibilità di attesa su eventi
+    \item \textbf{Tipi di dato hardware}\\
+    Vettori di bit, interi a precisione arbitraria, ecc.
+    \item \textbf{Simulazione}\\
+    Kernel di simulazione incluso nella libreria
+    \item \textbf{Debugging}\\
+    Possibilità di utilizzare i debugger disponibili per C/C++ come GNU GDB
+\end{itemize}
 
 \section{SystemC TLM}
 \section{SystemC AMS}
