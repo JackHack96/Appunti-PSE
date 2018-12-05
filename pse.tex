@@ -296,17 +296,22 @@ Riportiamo di seguito un possibile diagramma del modulo \texttt{gcd}.
 Questa è una possibile implementazione in VHDL del modulo GCD, descritta dal punto di vista ingressi-uscite:
 \begin{minted}[tabsize=2, escapeinside=??]{VHDL}
 ENTITY gcd IS
-    PORT (clock, reset : IN bit;
-        xi : IN unsigned (size-1 DOWNTO 0); ?\tikzmark{gcd_input1}?
-        yi : IN unsigned (size-1 DOWNTO 0); ?\tikzmark{gcd_input2}?
+    PORT (
+        clock : IN bit; ?\tikzmark{gcd_input1}?
+        reset : IN bit; ?\tikzmark{gcd_input2}?
+        xi : IN unsigned (size-1 DOWNTO 0); ?\tikzmark{gcd_input3}?
+        yi : IN unsigned (size-1 DOWNTO 0); ?\tikzmark{gcd_input4}?
         out : OUT unsigned (si?\tikzmark{gcd_varsize}?ze-1 DOWNTO 0) ?\tikzmark{gcd_output}?
     );
 END gcd;
 \end{minted}
 \begin{tikzpicture}[remember picture]
-    \draw[overlay, ->] (5,0) node [below]{dimensione variabile} -- (pic cs:gcd_varsize);
-    \draw[overlay, ->] ($(pic cs:gcd_inputs)+(0,0.1)$) -- ($(pic cs:gcd_inputs)+(2,-0.1)$) node [right]{porte di input};
-    \draw[overlay, ->] ($(pic cs:gcd_outputs)+(0,0.1)$) -- ($(pic cs:gcd_inputs)+(2,-0.1)$);
+    \draw[overlay, ->] ($(pic cs:gcd_input1)+(0,0.1)$) -- ($(pic cs:gcd_input1)+(5,-0.3)$) node [right]{porte di input};
+    \draw[overlay, ->] ($(pic cs:gcd_input2)+(0,0.1)$) -- ($(pic cs:gcd_input1)+(5,-0.3)$);
+    \draw[overlay, ->] ($(pic cs:gcd_input3)+(0,0.1)$) -- ($(pic cs:gcd_input1)+(5,-0.4)$);
+    \draw[overlay, ->] ($(pic cs:gcd_input4)+(0,0.1)$) -- ($(pic cs:gcd_input1)+(5,-0.4)$);
+    \draw[overlay, ->] ($(pic cs:gcd_output)+(0,0.1)$) -- ($(pic cs:gcd_output)+(1,0.1)$) node [right]{porta di output};
+    \draw[overlay, ->] ($(pic cs:gcd_varsize)+(0,-0.05)$) -- ($(pic cs:gcd_varsize)+(0,-0.5)$) node [below]{dimensione variabile};
 \end{tikzpicture}
 
 \pagebreak\noindent
