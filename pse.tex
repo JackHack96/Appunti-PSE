@@ -331,7 +331,7 @@ END behavioral;
 \chapter{SystemC}
 SystemC è un insieme di classi e macro del linguaggio C++ che forniscono un ambiente di simulazione \textit{event-driven}.
 Queste classi permettono al progettista di simulare processi concorrenti,  che possono anche comunicare in un ambiente
-real-time simulato, utilizzando segnali di qualsiasi tipo fornito da C++/SystemC o dall'utente.
+real-time simulato, utilizzando segnali di qualsiasi tipo forniti da C++/SystemC o dall'utente.
 Sebbene sia per certi versi simile a linguaggi come VHDL o Verilog, è più corretto definire SystemC un linguaggio di
 modellazione di sistemi.
 Lo standard è definito dalla \textit{Open SystemC Initiative} (OSCI), ora \textit{Accellera}, ed è stato
@@ -352,18 +352,19 @@ approvato dall'IEEE. Le caratteristiche salienti del SystemC sono:
     \item \textbf{Debugging}\\
     Possibilità di utilizzare i debugger disponibili per C/C++ come GNU GDB
 \end{itemize}
-In SystemC è possibile descrivere sistemi hardware e software a diversi livelli di astrazione, permettendo quindi il co-design. In particolare, si può descrivere a livello RT o TLM.
-\section{SystemC RTL}
-Nel \textit{Register Transfer Level} si può descrivere il funzionamento di un circuito digitale in termini di segnali,
-registri e operazioni logiche.
 Quando si progettano sistemi complessi, viene naturale dividere il progetto in sotto parti, che chiamiamo \textit{moduli},
 ognuno dei quali svolge una specifica funzione e comunica con altri. In SystemC i moduli sono rappresentati nientemeno che 
-da delle classi C++ e si specificano con la keywork \textit{\texttt{SC\_MODULE}}.
+da delle classi C++ e si specificano con la keyword \textit{\texttt{SC\_MODULE}}.
 Un modulo contiene la definizione delle porte di input e di output, i segnali interni e la loro eventuale inizializzazione,
 e i sottomoduli, che sono rappresentati nella loro forma minima dalle funzioni.
 Inoltre ogni modulo contiene un metodo costruttore, identificato dalla macro \textit{\texttt{SC\_CTOR}}, che contiene
 la dichiarazione di tutti i processi contenuti nel modulo e la sensitivity list associata a tali metodi, che specifica
 i segnali ai quali ciascun metodo deve reagire.
+In SystemC è possibile descrivere sistemi hardware e software a diversi livelli di astrazione, permettendo quindi il co-design.
+In particolare, si può descrivere a livello RT o TLM.
+\section{SystemC RTL}
+Nel \textit{Register Transfer Level} si può descrivere il funzionamento di un circuito digitale in termini di segnali,
+registri e operazioni logiche.
 \section{SystemC TLM}
 \section{SystemC AMS}
 \chapter{VHDL}
