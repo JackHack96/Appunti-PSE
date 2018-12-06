@@ -22,6 +22,7 @@
 \usepackage{pgfplots}
 \usetikzlibrary{tikzmark}
 \usetikzlibrary{calc}
+\usetikzlibrary{shapes}
 \usepackage{minted}
 
 \begin{document}
@@ -355,14 +356,17 @@ approvato dall'IEEE. Le caratteristiche salienti del SystemC sono:
 \begin{figure}[h]
     \centering
     \begin{tikzpicture}
-        \draw [->] (0,2) node[above]{XI} -- (1,2);
-        \draw [->] (0,1) node[above]{YI} -- (1,1);
-        \draw [<-] (2,3) -- (2,4) node[left]{CLOCK};
-        \draw [<-] (4,3) -- (4,4) node[left]{RESET};
-    
-        \draw [fill=SkyBlue] (1,0) rectangle (5,3) node[pos=.5] {GCD};
+%        \draw (1,1) rectangle (5,2) node(rtlevel)[pos=0.5,text width=5cm,align=center] {SystemC Model\\RT Level};
+        \node[ellipse](rtlevel){SystemC Model\\RT Level};
+        \draw (3,3) ellipse (2 and 0.5) node(refinement)[text width=5cm,align=center] {Refinement};
+        \draw (3,4.5) ellipse (2 and 0.5) node(simulation)[text width=5cm,align=center] {Simulation};
+        \draw (1,5.5) rectangle (5,6.5) node(systemlevel)[pos=0.5,text width=5cm,align=center] {SystemC Model\\System Level};
         
-        \draw [->] (5,1.5) -- (6,1.5) node [above] {OUT};
+        \draw [fill=CornflowerBlue] (6,1) rectangle (10,2) node(vhdl)[pos=0.5,text width=5cm,align=center] {FSMD Logic\\description};
+        \draw [fill=CornflowerBlue] (8,3) ellipse (2 and 0.5) node(synthesis)[text width=5cm,align=center] {Synthesis};
+        \draw [fill=CornflowerBlue] (6,4) rectangle (10,5) node(fsmd)[pos=0.5,text width=5cm,align=center] {VHDL/Verilog};
+        
+        \draw [->] (systemlevel) -- (simulation);
     \end{tikzpicture}
     \label{img:systemc_design_flow}
     \caption{SystemC design flow}
