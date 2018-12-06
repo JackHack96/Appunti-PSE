@@ -360,6 +360,20 @@ e i sottomoduli, che sono rappresentati nella loro forma minima dalle funzioni.
 Inoltre ogni modulo contiene un metodo costruttore, identificato dalla macro \textit{\texttt{SC\_CTOR}}, che contiene
 la dichiarazione di tutti i processi contenuti nel modulo e la sensitivity list associata a tali metodi, che specifica
 i segnali ai quali ciascun metodo deve reagire.
+
+I processi che vengono dichiarati all'interno di ogni modulo possono essere di tre tipi:
+\begin{itemize}
+    \item \textbf{Metodi}\\
+    Sono dei processi che quando vengono attivati ogni volta che arriva uno dei segnali espressi nella sensitivity list.
+    Si identificano con la keyword \textit{\texttt{SC\_METHOD}}.
+    \item \textbf{Thread}\\
+    Sono dei processi che possono essere attivati o sospesi, mediante la funzione \textbf{\texttt{wait()}}.
+    A differenza dei metodi, possono essere eseguiti una volta sola durante la simulazione.
+    Si identificano con la keyword \textit{\texttt{SC\_THREAD}}.
+    \item \textbf{Clocked threads}\\
+    Sono dei processi sensibili al segnale di clock. Sono stati dichiarati obsoleti.
+\end{itemize}
+
 In SystemC è possibile descrivere sistemi hardware e software a diversi livelli di astrazione, permettendo quindi il co-design.
 In particolare, si può descrivere a livello RT o TLM.
 \section{SystemC RTL}
