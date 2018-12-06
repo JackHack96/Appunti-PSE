@@ -353,24 +353,32 @@ approvato dall'IEEE. Le caratteristiche salienti del SystemC sono:
     \item \textbf{Debugging}\\
     Possibilità di utilizzare i debugger disponibili per C/C++ come GNU GDB
 \end{itemize}
-\begin{figure}[h]
+\begin{figure}
     \centering
-    \begin{tikzpicture}
-%        \draw (1,1) rectangle (5,2) node(rtlevel)[pos=0.5,text width=5cm,align=center] {SystemC Model\\RT Level};
-        \node[ellipse](rtlevel){SystemC Model\\RT Level};
-        \draw (3,3) ellipse (2 and 0.5) node(refinement)[text width=5cm,align=center] {Refinement};
-        \draw (3,4.5) ellipse (2 and 0.5) node(simulation)[text width=5cm,align=center] {Simulation};
-        \draw (1,5.5) rectangle (5,6.5) node(systemlevel)[pos=0.5,text width=5cm,align=center] {SystemC Model\\System Level};
+    \begin{tikzpicture}        
+        \node[draw, align=center](rtlevel) at (0,0) {SystemC Model\\RT Level};
+        \node[draw, ellipse, align=center](refinement) at (0,1.2) {Refinement};
+        \node[draw, ellipse, align=center](simulation) at (0,2.2) {Simulation};
+        \node[draw, align=center](systemlevel) at (0,3.4) {SystemC Model\\System Level};
         
-        \draw [fill=CornflowerBlue] (6,1) rectangle (10,2) node(vhdl)[pos=0.5,text width=5cm,align=center] {FSMD Logic\\description};
-        \draw [fill=CornflowerBlue] (8,3) ellipse (2 and 0.5) node(synthesis)[text width=5cm,align=center] {Synthesis};
-        \draw [fill=CornflowerBlue] (6,4) rectangle (10,5) node(fsmd)[pos=0.5,text width=5cm,align=center] {VHDL/Verilog};
+        \node[draw, align=center, fill=CornflowerBlue](fsmd) at (4,0) {FSMD Logic\\description};
+        \node[draw, ellipse, align=center, fill=CornflowerBlue](synthesis) at (4,1.2) {Synthesis};
+        \node[draw, align=center, fill=CornflowerBlue](vhdl) at (4,2.4) {VHDL/Verilog};
         
-        \draw [->] (systemlevel) -- (simulation);
+        \draw[->, thick] (systemlevel) -- (simulation);
+        \draw[->, thick] (simulation) -- (refinement);
+        \draw[->, thick] (refinement) -- (rtlevel);
+        \draw[->, thick] (rtlevel.west) -- ++(-20pt,0pt) |- ($(simulation.west)+(0,-2pt)$);
+        \draw[->, thick] ($(simulation.west)+(0,2pt)$) -- ++(-20pt,0pt) |- (systemlevel.west);
+        
+        \draw[->, thick] (vhdl) -- (synthesis);
+        \draw[->, thick] (synthesis) -- (fsmd);
+        \draw[->, thick] (rtlevel.south) -- ++(0pt,-10pt) -- ++(2,0) -- ++(0,4) node[midway] (middle){}  -- ++(2,0) node[above] {Automatic translation}-- (vhdl.north);
+        \draw[->, thick, dashed] (middle) -- (synthesis.west);
     \end{tikzpicture}
     \label{img:systemc_design_flow}
     \caption{SystemC design flow}
-\end{figure}
+\end{figure}    
 Quando si progettano sistemi complessi, viene naturale dividere il progetto in sotto parti, che chiamiamo \textit{moduli},
 ognuno dei quali svolge una specifica funzione e comunica con altri. In SystemC i moduli sono rappresentati nientemeno che 
 da delle classi C++ e si specificano con la keyword \textit{\texttt{SC\_MODULE}}.
