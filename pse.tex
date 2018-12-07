@@ -30,8 +30,10 @@
 \usetikzlibrary{calc}
 \usetikzlibrary{shapes,snakes}
 
-\BeforeBeginEnvironment{minted}{\begin{tcolorbox}}%
-\AfterEndEnvironment{minted}{\end{tcolorbox}}%
+% Automatically apply tcolorbox to minted environments
+\BeforeBeginEnvironment{minted}{\begin{tcolorbox}}
+\AfterEndEnvironment{minted}{\end{tcolorbox}}
+\tcbset{colframe=red}
 
 \begin{document}
 \begin{frontespizio}
