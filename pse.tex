@@ -37,9 +37,9 @@
 %\AfterEndEnvironment{minted}{\end{tcolorbox}}
 \tcbset{boxrule=1pt}
 \tcbuselibrary{skins}
-\newenvironment{systemc}[1]
-{\begin{tcolorbox}[enhanced,
-                   title="{#1}",
+\newenvironment{systemc}[1][\unskip]{
+\begin{tcolorbox}[enhanced,
+                   title= #1,
                    fonttitle=\bfseries,
                    attach boxed title to top left={xshift=3.2mm,yshift=-0.50mm},
                    boxed title style={
@@ -475,7 +475,7 @@ Per quanto riguarda le porte invece vi sono:
 \end{itemize}
 
 Analizziamo la codifica RT tramite un esempio, nel quale implementiamo uno shifter a 8 bit.
-\begin{systemc}
+\begin{systemc}[shifter.h]
 Prova
 \end{systemc}
 \section{SystemC TLM}
