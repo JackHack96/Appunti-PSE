@@ -51,6 +51,19 @@
 \end{tcolorbox}
 }
 
+\newenvironment{systemc}[1]
+{%
+  \VerbatimEnvironment
+  \begin{tcolorbox}
+  [enhanced,title= #1,fonttitle=\bfseries,attach boxed title to top left={xshift=3.2mm,yshift=-0.50mm},boxed title style={skin=enhancedfirst jigsaw,size=small,arc=1mm,bottom=-1mm}]
+  \caption{#2}%
+  \begin{minted}{C++}%
+}
+{%
+  \end{minted}%
+  \end{tcolorbox}%
+}
+
 \begin{document}
 \begin{frontespizio}
     \Universita{Verona}
