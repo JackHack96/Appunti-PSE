@@ -30,8 +30,8 @@
 \usetikzlibrary{shapes,snakes}
 
 % Automatically apply tcolorbox to minted environments
-\BeforeBeginEnvironment{minted}{\begin{tcolorbox}}
-\AfterEndEnvironment{minted}{\end{tcolorbox}}
+%\BeforeBeginEnvironment{minted}{\begin{tcolorbox}}
+%\AfterEndEnvironment{minted}{\end{tcolorbox}}
 \tcbset{boxrule=1pt}
 \tcbuselibrary{skins}
 \newenvironment{systemc}[1]{
@@ -40,10 +40,11 @@
         attach boxed title to top left={xshift=3.2mm,yshift=-0.50mm},
         boxed title style={skin=enhancedfirst jigsaw, size=small,arc=1mm,bottom=-1mm}]
         \begin{minted}{C++}
-        
+        }
+        {
         \end{minted}
     \end{tcolorbox}
-}{}
+}
 
 \begin{document}
 \begin{frontespizio}
