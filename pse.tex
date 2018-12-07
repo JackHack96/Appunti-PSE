@@ -405,8 +405,9 @@ La simulazione in SystemC è gestita dal kernel, che gestisce lo scheduling nel 
 \begin{itemize}[label={$\Rightarrow$}]
     \item Tutti i segnali di clock vengono aggiornati
     \item Tutti i processi sensibili ad esso vengono attivati
-    \item Si aumenta il tempo di simulazione di 1   
+    \item Si aumenta il tempo di simulazione di 1
 \end{itemize}
+Il segnale di clock viene generato normalmente da un thread che definisce anche il periodo del segnale.
 
 In SystemC è possibile descrivere sistemi hardware e software a diversi livelli di astrazione, permettendo quindi il co-design.
 In particolare, si può descrivere a livello RT o TLM.
