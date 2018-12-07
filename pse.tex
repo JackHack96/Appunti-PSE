@@ -31,21 +31,14 @@
 
 % Create useful environments for source code listing
 \tcbuselibrary{skins}
+
 \newenvironment{sourcecode}
 {\begin{tcolorbox}[boxrule=1pt]}
 {\end{tcolorbox}}
+
 \newenvironment{systemc}[1][\unskip]{
-\VerbatimEnvironment
-\begin{tcolorbox}[enhanced,
-                   title= #1,
-                   fonttitle=\bfseries,
-                   attach boxed title to top left={xshift=3.2mm,yshift=-0.50mm},
-                   boxed title style={
-                                    skin=enhancedfirst jigsaw,
-                                    size=small,
-                                    arc=1mm,
-                                    bottom=-1mm}
-                  ]
+\begin{tcolorbox}
+[enhanced,title= #1,fonttitle=\bfseries,attach boxed title to top left={xshift=3.2mm,yshift=-0.50mm},boxed title style={skin=enhancedfirst jigsaw,size=small,arc=1mm,bottom=-1mm}]
 \begin{minted}{C++}
 }
 {
