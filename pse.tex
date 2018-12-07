@@ -31,11 +31,8 @@
 
 % Create useful environments for source code listing
 \newenvironment{sourcecode}
-{\begin{tcolorbox}}
+{\begin{tcolorbox}[boxrule=1pt]}
 {\end{tcolorbox}}
-%\BeforeBeginEnvironment{minted}{\begin{tcolorbox}}
-%\AfterEndEnvironment{minted}{\end{tcolorbox}}
-\tcbset{boxrule=1pt}
 \tcbuselibrary{skins}
 \newenvironment{systemc}[1][\unskip]{
 \begin{tcolorbox}[enhanced,
