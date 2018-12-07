@@ -402,9 +402,10 @@ I processi che vengono dichiarati all'interno di ogni modulo possono essere di t
     Sono dei processi sensibili al segnale di clock. Sono stati dichiarati obsoleti.
 \end{itemize}
 La simulazione in SystemC è gestita dal kernel, che gestisce lo scheduling nel seguente modo:
-\begin{itemize}[label={--}]
-    \item Tutti i segnali di clock vengono aggiornati e tutti i processi sensibili ad esso vengono così attivati
-    \item LOl
+\begin{itemize}[label={$\Rightarrow$}]
+    \item Tutti i segnali di clock vengono aggiornati
+    \item Tutti i processi sensibili ad esso vengono attivati
+    \item Si aumenta il tempo di simulazione di 1   
 \end{itemize}
 
 In SystemC è possibile descrivere sistemi hardware e software a diversi livelli di astrazione, permettendo quindi il co-design.
