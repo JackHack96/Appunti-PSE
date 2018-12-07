@@ -417,6 +417,21 @@ Come detto precedentemente, in SystemC si possono descrivere sistemi hardware e 
 rendendo possibile il co-design. In particolare, si può descrivere a livello RT o TLM.
 Nel \textit{Register Transfer Level} si può descrivere il funzionamento di un circuito digitale in termini di segnali,
 registri e operazioni logiche.
+
+SystemC mette a disposizione delle porte e dei segnali predefiniti per simulare i segnali.
+\begin{itemize}
+    \item \texttt{sc\_int<n>} e \texttt{sc\_uint<n>}\\
+    Con questi rappresento un valore intero con o senza segno.
+    \item \texttt{sc\_bigint<n>} e \texttt{sc\_biguint<n>}\\
+    Con questi rappresento un valore intero molto grande, con o senza segno.
+    \item \texttt{sc\_bit}
+    Rappresento un singolo bit di informazione.
+    \item \texttt{sc\_logic}\\
+    Tipo a 4 valori: $0$, $1$, \texttt{unknown} e \texttt{don't care}.
+    \item \texttt{sc\_bv<n>} e \texttt{sc\_lv<n>}
+    \item \texttt{sc\_fixed} e \texttt{sc\_ufixed}
+    \item \texttt{sc\_fix} e \texttt{sc\_ufix}
+\end{itemize}
 \section{SystemC TLM}
 \section{SystemC AMS}
 \chapter{VHDL}
