@@ -20,6 +20,7 @@
 \usepackage{listings}
 \usepackage{tikz}
 \usepackage{pgfplots}
+\usepackage{enumitem}
 \usetikzlibrary{tikzmark}
 \usetikzlibrary{calc}
 \usetikzlibrary{shapes,snakes}
@@ -399,6 +400,11 @@ I processi che vengono dichiarati all'interno di ogni modulo possono essere di t
     Si identificano con la keyword \textit{\texttt{SC\_THREAD}}.
     \item \textbf{Clocked threads}\\
     Sono dei processi sensibili al segnale di clock. Sono stati dichiarati obsoleti.
+\end{itemize}
+La simulazione in SystemC è gestita dal kernel, che gestisce lo scheduling nel seguente modo:
+\begin{itemize}[label={--}]
+    \item Tutti i segnali di clock vengono aggiornati e tutti i processi sensibili ad esso vengono così attivati
+    \item LOl
 \end{itemize}
 
 In SystemC è possibile descrivere sistemi hardware e software a diversi livelli di astrazione, permettendo quindi il co-design.
