@@ -29,21 +29,30 @@
 \usetikzlibrary{calc}
 \usetikzlibrary{shapes,snakes}
 
-% Automatically apply tcolorbox to minted environments
+% Create useful environments for source code listing
+\newenvironment{sourcecode}
+{\begin{tcolorbox}}
+{\end{tcolorbox}}
 %\BeforeBeginEnvironment{minted}{\begin{tcolorbox}}
 %\AfterEndEnvironment{minted}{\end{tcolorbox}}
 \tcbset{boxrule=1pt}
 \tcbuselibrary{skins}
-\newenvironment{systemc}[1]{
-    \begin{tcolorbox}[enhanced,title="{#1}",
-        fonttitle=\bfseries,
-        attach boxed title to top left={xshift=3.2mm,yshift=-0.50mm},
-        boxed title style={skin=enhancedfirst jigsaw, size=small,arc=1mm,bottom=-1mm}]
-        \begin{minted}{C++}
-        }
-        {
-        \end{minted}
-    \end{tcolorbox}
+\newenvironment{systemc}[1]
+{\begin{tcolorbox}[enhanced,
+                   title="{#1}",
+                   fonttitle=\bfseries,
+                   attach boxed title to top left={xshift=3.2mm,yshift=-0.50mm},
+                   boxed title style={
+                                    skin=enhancedfirst jigsaw,
+                                    size=small,
+                                    arc=1mm,
+                                    bottom=-1mm}
+                  ]
+\begin{minted}{C++}
+}
+{
+\end{minted}
+\end{tcolorbox}
 }
 
 \begin{document}
@@ -466,7 +475,9 @@ Per quanto riguarda le porte invece vi sono:
 \end{itemize}
 
 Analizziamo la codifica RT tramite un esempio, nel quale implementiamo uno shifter a 8 bit.
-
+\begin{systemc}
+Prova
+\end{systemc}
 \section{SystemC TLM}
 \section{SystemC AMS}
 \chapter{VHDL}
