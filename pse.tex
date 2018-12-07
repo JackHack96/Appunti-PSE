@@ -33,10 +33,15 @@
 \tcbuselibrary{skins}
 
 \newenvironment{sourcecode}
-{\begin{tcolorbox}[boxrule=1pt]}
-{\end{tcolorbox}}
+{\begin{tcolorbox}[boxrule=1pt]
+\begin{minted}
+}
+{
+\end{minted}
+\end{tcolorbox}
+}
 
-\newenvironment{systemc}[1][\unskip]{
+\newenvironment{systemc}[1]{
 \begin{tcolorbox}
 [enhanced,title= #1,fonttitle=\bfseries,attach boxed title to top left={xshift=3.2mm,yshift=-0.50mm},boxed title style={skin=enhancedfirst jigsaw,size=small,arc=1mm,bottom=-1mm}]
 \begin{minted}{C++}
