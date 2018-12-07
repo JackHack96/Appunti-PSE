@@ -32,19 +32,9 @@
 % Create useful environments for source code listing
 \tcbuselibrary{skins}
 
-\newenvironment{sourcecode}
+\newenvironment{sourcecode}[1]
 {\begin{tcolorbox}[boxrule=1pt]
-\begin{minted}
-}
-{
-\end{minted}
-\end{tcolorbox}
-}
-
-\newenvironment{systemc}[1]{
-\begin{tcolorbox}
-[enhanced,title= #1,fonttitle=\bfseries,attach boxed title to top left={xshift=3.2mm,yshift=-0.50mm},boxed title style={skin=enhancedfirst jigsaw,size=small,arc=1mm,bottom=-1mm}]
-\begin{minted}{C++}
+\begin{minted}[tabsize=2]{#1}
 }
 {
 \end{minted}
@@ -52,15 +42,14 @@
 }
 
 \newenvironment{systemc}[1]
-{%
-  \VerbatimEnvironment
+{
   \begin{tcolorbox}
   [enhanced,title= #1,fonttitle=\bfseries,attach boxed title to top left={xshift=3.2mm,yshift=-0.50mm},boxed title style={skin=enhancedfirst jigsaw,size=small,arc=1mm,bottom=-1mm}]
-  \begin{minted}{C++}%
+  \begin{minted}{C++}
 }
-{%
-  \end{minted}%
-  \end{tcolorbox}%
+{
+  \end{minted}
+  \end{tcolorbox}
 }
 
 \begin{document}
@@ -345,7 +334,7 @@ END gcd;
     \draw[overlay, ->] ($(pic cs:gcd_varsize)+(0,-0.05)$) -- ($(pic cs:gcd_varsize)+(0,-0.5)$) node [below]{dimensione variabile};
 \end{tikzpicture}
 mentre questa è la descrizione comportamentale del modulo hardware:
-\begin{minted}[tabsize=2]{VHDL}
+\begin{sourcecode}
 ARCHITECTURE behavioral OF gcd IS
 BEGIN
     PROCESS
@@ -365,7 +354,7 @@ BEGIN
     ou <= y;
     END PROCESS;
 END behavioral;
-\end{minted}
+\end{sourcecode}
 
 \chapter{SystemC}
 SystemC è un insieme di classi e macro del linguaggio C++ che forniscono un ambiente di simulazione \textit{event-driven}.
@@ -484,7 +473,7 @@ Per quanto riguarda le porte invece vi sono:
 
 Analizziamo la codifica RT tramite un esempio, nel quale implementiamo uno shifter a 8 bit.
 \begin{systemc}[shifter.h]
-Prova
+    int a;
 \end{systemc}
 \section{SystemC TLM}
 \section{SystemC AMS}
