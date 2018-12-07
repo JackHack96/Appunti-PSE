@@ -408,6 +408,10 @@ La simulazione in SystemC è gestita dal kernel, che gestisce lo scheduling nel 
     \item Si aumenta il tempo di simulazione di 1
 \end{itemize}
 Il segnale di clock viene generato normalmente da un thread che definisce anche il periodo del segnale.
+Oltre a poter eseguire una simulazione \textit{event-driven}, è anche possibile farne una \textit{cycle accurate}.
+La differenza sta nella velocità e nella precisione della simulazione, infatti in quella \textit{cycle accurate} si
+osservano i cambiamenti ad ogni ciclo di clock, senza però preoccuparsi di osservare i cambiamenti che avvengono
+durante il ciclo.
 
 In SystemC è possibile descrivere sistemi hardware e software a diversi livelli di astrazione, permettendo quindi il co-design.
 In particolare, si può descrivere a livello RT o TLM.
