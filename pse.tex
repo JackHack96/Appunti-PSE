@@ -10,6 +10,13 @@
 \usepackage{microtype}
 \usepackage{textcomp}
 \usepackage{hyperref}
+\usepackage{tikz}               % Load TIKZ
+\usepackage{pgfplots}           % Load graph tools
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{etoolbox}
+\usepackage{minted}
+
 \hypersetup{
     colorlinks,
     citecolor=black,
@@ -17,15 +24,13 @@
     linkcolor=black,
     urlcolor=black
 }
-\usepackage{listings}
-\usepackage{tikz}
-\usepackage{pgfplots}
-\usepackage{enumitem}
-\usepackage{fancyvrb}
+
 \usetikzlibrary{tikzmark}
 \usetikzlibrary{calc}
 \usetikzlibrary{shapes,snakes}
-\usepackage{minted}
+
+\BeforeBeginEnvironment{minted}{\begin{tcolorbox}}%
+\AfterEndEnvironment{minted}{\end{tcolorbox}}%
 
 \begin{document}
 \begin{frontespizio}
