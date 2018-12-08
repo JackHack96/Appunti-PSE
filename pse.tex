@@ -31,9 +31,11 @@
 
 % Create useful environments for source code listing
 \tcbuselibrary{skins,minted}
-\newtcblisting{sourcecode}{
+\newtcblisting{sourcecode}[1]{
 boxrule=1pt
-listing only
+listing only,
+minted language=#1
+minted style=colorful
 }
 \newtcblisting{systemc}[1]{
     enhanced, 
@@ -41,7 +43,9 @@ listing only
     fonttitle=\bfseries, 
     attach boxed title to top left={xshift=3.2mm,yshift=-0.50mm}, 
     boxed title style={skin=enhancedfirst jigsaw,size=small,arc=1mm,bottom=-1mm}, 
-    listing only, 
+    listing only,
+    minted language=cpp,
+    minted style=colorful
 }
 
 \begin{document}
