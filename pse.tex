@@ -477,8 +477,8 @@ Analizziamo la codifica RT tramite un esempio, nel quale implementiamo uno shift
 
 SC_MODULE(shifter) {
   sc_in<bool> ds; ?\tikzmark{shifter_input1}?
-  sc_in<sc_bv<N>> a;
-  sc_in<bool> i0;
+  sc_in<sc_bv<N>> a; ?\tikzmark{shifter_input2}?
+  sc_in<bool> i0; ?\tikzmark{shifter_input3}?
   sc_out<sc_bv<N>> o;
 
   void shift();
@@ -512,6 +512,7 @@ void shifter::shift() {
   o.write(c1);
 }
 \end{systemc}
+%TODO: aggiungere frecce con spiegazione
 \section{SystemC TLM}
 \section{SystemC AMS}
 \chapter{VHDL}
