@@ -13,8 +13,11 @@
 \usepackage{tikz}               % Load TiKZ
 \usepackage{pgfplots}           % Load graph tools
 \usepackage{enumitem}           % For changing item bullets
+\usepackage{listings}
+\usepackage{fancyvrb}
 \usepackage{minted}             % For source code listing
 \usepackage{tcolorbox}          % For source code frames
+
 
 \hypersetup{
     colorlinks,
@@ -34,8 +37,10 @@
 \newtcblisting{sourcecode}[1]{
 boxrule=1pt,
 listing only,
+listing engine=minted,
 minted language=#1,
-minted style=colorful
+minted style=colorful,
+minted options={lineos=true,tabsize=2}
 }
 \newtcblisting{systemc}[1]{
     enhanced, 
@@ -234,7 +239,7 @@ Quando progettiamo hardware invece non possiamo permetterci questo lusso in quan
 non c'è, siamo noi a costruirla.
 
 Prendiamo in esempio un programma scritto in linguaggio C e osserviamo le assunzioni che facciamo senza nemmeno pensare.\\
-\begin{minted}[tabsize=2]{c}
+\begin{sourcecode}{c}
 #include <stdio.h>
 
 int gcd(int xi, int yi){
@@ -262,7 +267,7 @@ int main(int argc, char *argv[]){
     
     return 0;
 }
-\end{minted}
+\end{sourcecode}
 I requisiti hardware per poter eseguire questo programma sono:
 \begin{itemize}
     \item \textbf{Input/Output}\\
