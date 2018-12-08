@@ -275,7 +275,7 @@ I requisiti hardware per poter eseguire questo programma sono:
     \textit{HW}: devono essere definiti uno o più segnali di clock (e le istruzioni possono impiegare diversi cicli di clock)
     \item \textbf{Dimensioni variabili}\\
     \textit{SW}: dimensioni implicite sono nascoste\\
-    \textit{HW}: devo tenere conto delle dimensioni, in quanto sto creando di fisico che poi corrisponderà alla variabile
+    \textit{HW}: devo tenere conto delle dimensioni, in quanto sto creando qualcosa di fisico che poi corrisponderà alla variabile
     \item \textbf{Operazioni}\\
     \textit{SW}: esistono librerie per ogni tipo di operazioni\\
     \textit{HW}: difficili dato che devo fare un circuito apposito. Se poi vogliamo anche i numeri in virgola mobile, il circuito aumenta molto in complessità
@@ -290,7 +290,7 @@ Quando scriviamo l'algoritmo software facciamo quindi molte assunzioni, del tutt
 scontato quando invece progettiamo un modulo hardware.
 
 \noindent
-La prima cosa di cui bisogna preoccuparsi quando è definire le porte d'ingresso e di uscita. Una volta completata
+La prima cosa di cui bisogna preoccuparsi è definire le porte d'ingresso e di uscita. Una volta completata
 l'identificazione delle porte, bisogna individuare la modalità con cui andremo a progettare il modulo,
 che nel nostro caso sarà una FSMD, ovvero una macchina a stati finiti combinata con un datapath. 
 Nella definizione della FSM e del DP, bisogna tenere conto degli eventuali vincoli: se ad esempio mi interessa un circuito veloce posso permettermi un DP più grande, mentre se voglio che il mio circuito occupi il minor spazio possibile dovrò allargare la FSM.
@@ -408,7 +408,7 @@ approvato dall'IEEE. Le caratteristiche salienti del SystemC sono:
 Quando si progettano sistemi complessi, viene naturale dividere il progetto in sotto parti, che chiamiamo \textit{moduli},
 ognuno dei quali svolge una specifica funzione e comunica con altri. In SystemC i moduli sono rappresentati nientemeno che 
 da delle classi C++ e si specificano con la keyword \textit{\texttt{SC\_MODULE}}.
-Un modulo contiene la definizione delle porte di input e di output, i segnali interni e la loro eventuale inizializzazione,
+Un modulo contiene la definizione delle porte di input e di output, i segnali interni con la loro eventuale inizializzazione
 e i sottomoduli, che sono rappresentati nella loro forma minima dalle funzioni.
 Inoltre ogni modulo contiene un metodo costruttore, identificato dalla macro \textit{\texttt{SC\_CTOR}}, che contiene
 la dichiarazione di tutti i processi contenuti nel modulo e la sensitivity list associata a tali metodi, che specifica
@@ -443,7 +443,7 @@ rendendo possibile il co-design. In particolare, si può descrivere a livello RT
 Nel \textit{Register Transfer Level} si può descrivere il funzionamento di un circuito digitale in termini di segnali,
 registri e operazioni logiche.
 
-SystemC mette a disposizione dei tipi predefiniti, utili ad identificare 
+SystemC mette a disposizione dei tipi predefiniti, utili ad identificare: 
 \begin{itemize}
     \item \texttt{sc\_int<n>} e \texttt{sc\_uint<n>}\\
     Con questi rappresento un valore intero con o senza segno.
