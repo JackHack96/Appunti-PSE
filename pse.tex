@@ -32,14 +32,14 @@
 
 % Create useful environments for source code listing
 \tcbuselibrary{skins,minted}
-\newtcblisting{sourcecode}[1]{
+\newtcblisting{sourcecode}[1]{ % Generic source code environment, the argument is the language
     boxrule=1pt,
     listing only,
     listing engine=minted,
     minted language=#1,
     minted options={tabsize=2,escapeinside=??}
 }
-\newtcblisting{systemc}[1]{
+\newtcblisting{systemc}[1]{ % SystemC source code environment, the argument is the file title
     enhanced, 
     title={#1\strut}, 
     fonttitle=\bfseries, 
