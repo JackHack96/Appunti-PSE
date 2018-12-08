@@ -1,13 +1,13 @@
 \documentclass[10pt,a4paper,oneside]{scrbook}
 \usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{amssymb}
-\usepackage[dvipsnames]{xcolor}
-\usepackage{graphicx}
-\usepackage{frontespizio}
-\usepackage{microtype}
+\usepackage{amsmath}            % Additional things
+\usepackage{amsfonts}           % Additional things
+\usepackage{amssymb}            % Additional symbols
+\usepackage[dvipsnames]{xcolor} % Load colors
+\usepackage{graphicx}           % Load graphics in document
+\usepackage{frontespizio}       % For the first page
+\usepackage{microtype}          % Additional symbols
 \usepackage{textcomp}           % Additional symbols
 \usepackage{hyperref}           % For links
 \usepackage{tikz}               % Load TiKZ
@@ -15,7 +15,6 @@
 \usepackage{enumitem}           % For changing item bullets
 \usepackage{minted}             % For source code listing
 \usepackage{tcolorbox}          % For source code frames
-
 
 \hypersetup{
     colorlinks,
@@ -475,8 +474,41 @@ Analizziamo la codifica RT tramite un esempio, nel quale implementiamo uno shift
 #include <systemc.h>
 #define N 8
 
-SC_MODULE(shifter){
+SC_MODULE(shifter) {
+  sc_in<bool> ds;
+  sc_in<sc_bv<N>> a;
+  sc_in<bool> i0;
+  sc_out<sc_bv<N>> o;
 
+  void shift();
+
+  SC_CTOR(shifter) {
+    SC_METHOD(shift);
+    sensitive << ds << a << i0;
+  }
+};
+\end{systemc}
+\begin{systemc}{shifter.cpp}
+#include "shifter.h"
+
+void shifter::shift() {
+  bool ds1;
+  bool i01;
+  sc_bv<N> a1;
+  sc_bv<N> c1;
+
+  i01 = i0.read();
+  ds1 = ds.read();
+  a1 = a.read();
+
+  if (ds1 == 1) {
+    c1.range(N - 2, 0) = a1.range(N - 1, 1);
+    c1[N - 1] = i01;
+  } else {
+    c1.range(N - 1, 1) = a1.range(N - 2, 0);
+    c1[0] = i01;
+  }
+  o.write(c1);
 }
 \end{systemc}
 \section{SystemC TLM}
