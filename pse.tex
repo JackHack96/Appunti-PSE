@@ -476,7 +476,7 @@ Analizziamo la codifica RT tramite un esempio, nel quale implementiamo uno shift
 #define N 8
 
 SC_MODULE(shifter) {
-  sc_in<bool> ds;
+  sc_in<bool> ds; ?\tikzmark{shifter_input1}?
   sc_in<sc_bv<N>> a;
   sc_in<bool> i0;
   sc_out<sc_bv<N>> o;
