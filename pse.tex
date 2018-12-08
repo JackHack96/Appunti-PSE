@@ -326,7 +326,7 @@ END gcd;
     \draw[overlay, ->] ($(pic cs:gcd_varsize)+(0,-0.05)$) -- ($(pic cs:gcd_varsize)+(0,-0.5)$) node [below]{dimensione variabile};
 \end{tikzpicture}
 mentre questa è la descrizione comportamentale del modulo hardware:
-%\begin{sourcecode}[VHDL]
+\begin{sourcecode}{VHDL}
 ARCHITECTURE behavioral OF gcd IS
 BEGIN
     PROCESS
@@ -346,7 +346,7 @@ BEGIN
     ou <= y;
     END PROCESS;
 END behavioral;
-%\end{sourcecode}
+\end{sourcecode}
 
 \chapter{SystemC}
 SystemC è un insieme di classi e macro del linguaggio C++ che forniscono un ambiente di simulazione \textit{event-driven}.
@@ -465,7 +465,7 @@ Per quanto riguarda le porte invece vi sono:
 
 Analizziamo la codifica RT tramite un esempio, nel quale implementiamo uno shifter a 8 bit.
 \begin{systemc}{shifter.h}
-    int a;
+
 \end{systemc}
 \section{SystemC TLM}
 \section{SystemC AMS}
