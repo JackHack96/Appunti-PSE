@@ -13,8 +13,6 @@
 \usepackage{tikz}               % Load TiKZ
 \usepackage{pgfplots}           % Load graph tools
 \usepackage{enumitem}           % For changing item bullets
-\usepackage{listings}
-\usepackage{fancyvrb}
 \usepackage{minted}             % For source code listing
 \usepackage{tcolorbox}          % For source code frames
 
@@ -39,7 +37,6 @@ boxrule=1pt,
 listing only,
 listing engine=minted,
 minted language=#1,
-minted style=colorful,
 minted options={lineos=true,tabsize=2}
 }
 \newtcblisting{systemc}[1]{
@@ -50,7 +47,6 @@ minted options={lineos=true,tabsize=2}
     boxed title style={skin=enhancedfirst jigsaw,size=small,arc=1mm,bottom=-1mm}, 
     listing only,
     minted language=cpp,
-    minted style=colorful
 }
 
 \begin{document}
