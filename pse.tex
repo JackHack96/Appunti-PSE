@@ -33,11 +33,11 @@
 % Create useful environments for source code listing
 \tcbuselibrary{skins,minted}
 \newtcblisting{sourcecode}[1]{
-boxrule=1pt,
-listing only,
-listing engine=minted,
-minted language=#1,
-minted options={tabsize=2}
+    boxrule=1pt,
+    listing only,
+    listing engine=minted,
+    minted language=#1,
+    minted options={tabsize=2,escapeinside=??}
 }
 \newtcblisting{systemc}[1]{
     enhanced, 
@@ -312,7 +312,7 @@ Riportiamo di seguito un possibile diagramma del modulo \texttt{gcd}.
 \end{figure}
 \\
 Questa è una possibile implementazione in VHDL del modulo GCD, descritta dal punto di vista ingressi-uscite:
-\begin{minted}[tabsize=2, escapeinside=??]{VHDL}
+\begin{sourcecode}{VHDL}
 ENTITY gcd IS
     PORT (
         clock : IN bit; ?\tikzmark{gcd_input1}?
@@ -322,7 +322,7 @@ ENTITY gcd IS
         out : OUT unsigned (si?\tikzmark{gcd_varsize}?ze-1 DOWNTO 0) ?\tikzmark{gcd_output}?
     );
 END gcd;
-\end{minted}
+\end{sourcecode}
 \begin{tikzpicture}[remember picture]
     \draw[overlay, ->] ($(pic cs:gcd_input1)+(0,0.1)$) -- ($(pic cs:gcd_input1)+(5,-0.3)$) node [right]{porte di input};
     \draw[overlay, ->] ($(pic cs:gcd_input2)+(0,0.1)$) -- ($(pic cs:gcd_input1)+(5,-0.3)$);
