@@ -35,7 +35,7 @@
 boxrule=1pt
 listing only
 }
-\newtcblisting{systemc}[1]{ 
+\newtcblisting{systemc}[1]{
     enhanced, 
     title={#1\strut}, 
     fonttitle=\bfseries, 
@@ -464,7 +464,7 @@ Per quanto riguarda le porte invece vi sono:
 \end{itemize}
 
 Analizziamo la codifica RT tramite un esempio, nel quale implementiamo uno shifter a 8 bit.
-\begin{systemc}[shifter.h]
+\begin{systemc}{shifter.h}
     int a;
 \end{systemc}
 \section{SystemC TLM}
