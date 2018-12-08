@@ -31,17 +31,10 @@
 
 % Create useful environments for source code listing
 \tcbuselibrary{skins,minted}
-
-\newenvironment{sourcecode}[1]
-    {\begin{tcolorbox}[boxrule=1pt]
-    \VerbatimEnvironment
-    \begin{minted}[tabsize=2]{#1}
-    }
-    {
-    \end{minted}
-    \end{tcolorbox}
-    }
-
+\newtcblisting{sourcecode}{
+boxrule=1pt
+listing only
+}
 \newtcblisting{systemc}[1]{ 
     enhanced, 
     title={#1\strut}, 
