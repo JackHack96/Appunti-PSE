@@ -623,5 +623,44 @@ Cose che puoi dichiarare:\\
         END PROCESS\\
     END nome\_arch
 \end{itemize}
+\chapter{Esercizi}
+Si consideri il seguente spezzone di codice SystemC comportamentale, che si vuole raffinare a livello RT, garantendo
+la latenza minima e il minimo numero di componenti, sotto il vincolo di utilizzare un solo sommatore.
+\begin{sourcecode}{C++}
+    // input ports reading
+    a = a_in.read();
+    b = b_in.read();
+    c = c_in.read();
+    while(a < b){
+        d = a + a * (b + 1);
+        e = e + c * a;
+        f = c * a + d;
+        if(e < f)
+            f_out.write(a + b);
+        else
+            f_out.write(a * b);
+        a = a + b;
+    }
+\end{sourcecode}
+\begin{itemize}
+    \item Si assuma che tutte le variabili siano numeri interi con segno a $N$ bit e che tutte le variabili esplicitamente
+    lette o scritte siano porte di ingresso o uscita del modulo.
+    \item Si identifichino eventuali ottimizzazioni del codice dato.
+    \item Si identifichi lo scheduling a latenza minima che utilizza il minimo numero di operatori.
+    \item Si descriva in VHDL il risultato dello scheduling mediante una EFSM composta da due processi.
+    \item Si identifichi una possibile allocazione dei registri che tenda a minimizzarne il numero.
+    \item Si descriva in VHDL data-flow la parte del \textit{data-path} del circuito identificatore che effettua
+    il solo calcolo di aggiornamento della variabile \texttt{f}.
+\end{itemize}
+Innanzitutto cerchiamo di ottimizzare. La lettura è apposto così, poi abbiamo uno spezzone ottimizzabile:
+\begin{sourcecode}{C++}
+        d = a + a * (b + 1);
+        e = e + c * a;
+        f = c * a + d;
+\end{sourcecode}
+La prima riga è equivalente a:\\
+\texttt{a + a * b + a}, \texttt{2 * a + a * b};\\
+tenendo conto del fatto che abbiamo un solo sommatore, preferiamo tenere i prodotti, quindi \texttt{2 * a + a * b}.
+Le altre due righe non sono ottimizzabili in quest'ottica.
 \end{document}
 
