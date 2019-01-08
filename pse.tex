@@ -532,10 +532,10 @@ In TLM si descrive il sistema a livello comportamentale, in cui non si sa esatta
 di clock. Ci si focalizza sulle transizioni tra le varie componenti, che nel concreto diventeranno delle interfacce.
 
 \begin{figure}[h]
-\centering
-\includegraphics[width=1\linewidth]{"img/platform based design"}
-\caption{Visualizzazione della progettazione \textit{platform based}}
-\label{fig:platform-based-design}
+    \centering
+    \includegraphics[width=1\linewidth]{"img/platform based design"}
+    \caption{Visualizzazione della progettazione \textit{platform based}}
+    \label{fig:platform-based-design}
 \end{figure}
 
 Date le specifiche, che possono essere in un linguaggio ad alto livello come UML, MATLAB o C/C++, si codificano i
@@ -549,6 +549,19 @@ Alla base del TLM vi è il concetto di transazione, che permette il trasferiment
 La comunicazione avviene tramite la chiamata di una primitiva del ricevente (che chiameremo \textit{target})
 da parte del mittente (\textit{initiator}), alla quale viene agganciato un \textit{payload}, che contiene sia
 informazioni utili sia di controllo.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{"img/initiator target"}
+    \caption{Schema forward/backward path}
+    \label{fig:forward-backward-path}
+\end{figure}
+SystemC ha definito due standard diversi di TLM. Nello standard 1.0 venivano proposti 3 diversi livelli di astrazione, ovvero
+\begin{itemize}
+    \item Program View (PV)
+    \item Program View with Time (PVT)
+    \item Cycle Accurate (CA)
+\end{itemize}
+tuttavia nello standard 2.0 furono abbandonati per concentrarsi invece nella relazione tra dati e tempo
 \section{SystemC AMS}
 \chapter{VHDL}
 VHDL è un linguaggio standard per la progettazione di hardware digitale. Può essere usato a diversi livelli di astrazione, che vanno da una descrizione algoritmica fino a quella di livello gate ma è lo standard per il livello RT. La progettazione può essere eseguita a diversi livelli che possono poi essere collegati tra loro. Il design può essere gerarchico, quindi con una struttura complessa, ed è possibile approcciare con un flusso di progettazione di tipo top-down oppure Bottom-up.
