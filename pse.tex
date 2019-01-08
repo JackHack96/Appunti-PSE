@@ -546,8 +546,9 @@ I vantaggi principali offerti dalla progettazione TLM sono la velocità di simul
 rispetto a RTL), la semplificazione del design e una riduzione drastica dei tempi di sviluppo.
 
 Alla base del TLM vi è il concetto di transazione, che permette il trasferimento di dati da un modulo all'altro.
-La comunicazione avviene tramite la chiamata di una primitiva del ricevente da parte del mittente, alla quale viene
-agganciato un \textit{payload}, che contiene sia informazioni utili sia di controllo.
+La comunicazione avviene tramite la chiamata di una primitiva del ricevente (che chiameremo \textit{target})
+da parte del mittente (\textit{initiator}), alla quale viene agganciato un \textit{payload}, che contiene sia
+informazioni utili sia di controllo.
 \section{SystemC AMS}
 \chapter{VHDL}
 VHDL è un linguaggio standard per la progettazione di hardware digitale. Può essere usato a diversi livelli di astrazione, che vanno da una descrizione algoritmica fino a quella di livello gate ma è lo standard per il livello RT. La progettazione può essere eseguita a diversi livelli che possono poi essere collegati tra loro. Il design può essere gerarchico, quindi con una struttura complessa, ed è possibile approcciare con un flusso di progettazione di tipo top-down oppure Bottom-up.
