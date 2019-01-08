@@ -526,18 +526,24 @@ Tramite le macro \texttt{SC\_METHOD}, \texttt{SC\_THREAD} e \texttt{SC\_CTHREAD}
 \section{SystemC TLM}
 Anche se in SystemC è possibile progettare hardware a livello RT, quello che lo ha reso interessante 
 rispetto a VHDL/Verilog è la capacità di poter fare \textit{platform based design}.
-Una \textit{piattaforma} è un'architettura hardware e software complessa generica, adattabile alle mie esigenze specifiche.
+La progettazione platform based consiste nella creazione di un'architettura basata su microprocessore che può essere estesa rapidamente
+per un ampio range di applicazioni in tempi ridotti.
 In TLM si descrive il sistema a livello comportamentale, in cui non si sa esattamente cosa succede a ogni ciclo
 di clock. Ci si focalizza sulle transizioni tra le varie componenti, che nel concreto diventeranno delle interfacce.
 
-%TODO: platform based design flow
+\begin{figure}[h]
+\centering
+\includegraphics[width=1\linewidth]{"img/platform based design"}
+\caption{Visualizzazione della progettazione \textit{platform based}}
+\label{fig:platform-based-design}
+\end{figure}
 
 Date le specifiche, che possono essere in un linguaggio ad alto livello come UML, MATLAB o C/C++, si codificano i
 vari moduli e le interazioni fra di essi e si passa al profiling, in cui si decide cosa diventa software e cosa 
 diventa hardware. È pratica comune riutilizzare componenti già codificate da altri, tanto che esistono portali dedicati
 all'IP re-use (\textit{Intellectual Properties re-use}).
 I vantaggi principali offerti dalla progettazione TLM sono la velocità di simulazione (fino a 1000 volte più veloce 
-rispetto a RTL), la semplificazione del design
+rispetto a RTL), la semplificazione del design e una riduzione drastica dei tempi di sviluppo.
 \section{SystemC AMS}
 \chapter{VHDL}
 VHDL è un linguaggio standard per la progettazione di hardware digitale. Può essere usato a diversi livelli di astrazione, che vanno da una descrizione algoritmica fino a quella di livello gate ma è lo standard per il livello RT. La progettazione può essere eseguita a diversi livelli che possono poi essere collegati tra loro. Il design può essere gerarchico, quindi con una struttura complessa, ed è possibile approcciare con un flusso di progettazione di tipo top-down oppure Bottom-up.
