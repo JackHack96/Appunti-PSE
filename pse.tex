@@ -488,7 +488,6 @@ SC_MODULE(shifter) {  ?\tikzmark{shifter_module}?
     sensitive << ds << a << i0; ?\tikzmark{shifter_sensitivity}?
   }
 };
-
 \end{systemc}
 \begin{tikzpicture}[remember picture]
     \draw[overlay, ->] ($(pic cs:shifter_module)+(0,0.1)$) -- ($(pic cs:shifter_module)+(1,0.3)$) node [right]{dichiarazione del modulo};
@@ -522,6 +521,7 @@ void shifter::shift() {
 \end{systemc}
 Nell'header si definisce il nome del modulo con la macro \texttt{SC\_MODULE}, le sue porte di input e di output (con tipo di dato e ampiezza in bit quando
 richiesto), i metodi che implementano il comportamento del modulo e la \textit{sensitivity list}, ovvero la lista dei segnali a cui il modulo è sensibile.
+Tramite le macro \texttt{SC\_METHOD}, \texttt{SC\_THREAD} e \texttt{SC\_CTHREAD} identifico rispettivamente i metodi, i thread e i clocked thread (deprecati).
 \section{SystemC TLM}
 Anche se in SystemC è possibile progettare hardware a livello RT, quello che lo ha reso interessante 
 rispetto a VHDL/Verilog è la capacità di poter fare \textit{platform based design}.
