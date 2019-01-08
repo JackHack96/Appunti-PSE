@@ -561,7 +561,19 @@ SystemC ha definito due standard diversi di TLM. Nello standard 1.0 venivano pro
     \item Program View with Time (PVT)
     \item Cycle Accurate (CA)
 \end{itemize}
-tuttavia nello standard 2.0 furono abbandonati per concentrarsi invece nella relazione tra dati e tempo
+tuttavia nello standard 2.0 sono stati abbandonati per concentrarsi invece nella relazione tra dati e tempo.
+Sono stati definiti quindi 3 modi livelli di accuratezza:
+\begin{itemize}
+    \item Untimed
+    \subitem Interfacce bloccanti
+    \subitem Punti di sincronizzazione predefiniti
+    \item Loosely timed
+    \subitem Interfacce bloccanti
+    \subitem Due punti di sincronizzazione (invocazione e ritorno)
+    \item Approximately timed
+    \subitem Interfacce non bloccanti
+    \subitem Annotazione del tempo con fasi multiple durante la transazione
+\end{itemize}
 \section{SystemC AMS}
 \chapter{VHDL}
 VHDL è un linguaggio standard per la progettazione di hardware digitale. Può essere usato a diversi livelli di astrazione, che vanno da una descrizione algoritmica fino a quella di livello gate ma è lo standard per il livello RT. La progettazione può essere eseguita a diversi livelli che possono poi essere collegati tra loro. Il design può essere gerarchico, quindi con una struttura complessa, ed è possibile approcciare con un flusso di progettazione di tipo top-down oppure Bottom-up.
