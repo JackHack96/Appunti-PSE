@@ -475,20 +475,27 @@ Analizziamo la codifica RT tramite un esempio, nel quale implementiamo uno shift
 #include <systemc.h>
 #define N 8
 
-SC_MODULE(shifter) {
+SC_MODULE(shifter) {  ?\tikzmark{shifter_module}?
   sc_in<bool> ds; ?\tikzmark{shifter_input1}?
-  sc_in<sc_bv<N>> a; ?\tikzmark{shifter_input2}?
-  sc_in<bool> i0; ?\tikzmark{shifter_input3}?
-  sc_out<sc_bv<N>> o;
+  sc_in<sc_bv<N>> a;
+  sc_in<bool> i0; ?\tikzmark{shifter_input2}?
+  sc_out<sc_bv<N>> o; ?\tikzmark{shifter_output}?
 
-  void shift();
+  void shift(); ?\tikzmark{shifter_method}?
 
   SC_CTOR(shifter) {
     SC_METHOD(shift);
-    sensitive << ds << a << i0;
+    sensitive << ds << a << i0; ?\tikzmark{shifter_sensitivity}?
   }
 };
 \end{systemc}
+\begin{tikzpicture}[remember picture]
+    \draw[overlay, ->] ($(pic cs:shifter_module)+(0,0.1)$) -- ($(pic cs:shifter_module)+(1,0.3)$) node [right]{dichiarazione del modulo};
+    \draw[overlay, decorate, decoration={brace,amplitude=5pt}] ($(pic cs:shifter_input1)+(1,0.2)$) -- ($(pic cs:shifter_input2)+(1,-0.2)$) node [black, midway, xshift=1.3cm]{porte di input};
+    \draw[overlay, ->] ($(pic cs:shifter_output)+(0,-0.1)$) -- ($(pic cs:shifter_output)+(0.4,-0.3)$) node [right]{porta di output};
+    \draw[overlay, ->] ($(pic cs:shifter_method)+(0,0.1)$) -- ($(pic cs:shifter_method)+(0.4,0.1)$) node [right]{dichiarazione metodo interno};
+    \draw[overlay, ->] ($(pic cs:shifter_sensitivity)+(0,0.1)$) -- ($(pic cs:shifter_sensitivity)+(0.4,0.1)$) node [right]{dichiarazione sensitivity list};
+\end{tikzpicture}
 \begin{systemc}{shifter.cpp}
 #include "shifter.h"
 
@@ -512,7 +519,8 @@ void shifter::shift() {
   o.write(c1);
 }
 \end{systemc}
-%TODO: aggiungere frecce con spiegazione
+Nell'header si definisce il nome del modulo con la macro \texttt{SC\_MODULE}, le sue porte di input e di output (con tipo di dato e ampiezza in bit quando
+richiesto)
 \section{SystemC TLM}
 Anche se in SystemC è possibile progettare hardware a livello RT, quello che lo ha reso interessante 
 rispetto a VHDL/Verilog è la capacità di poter fare \textit{platform based design}.
