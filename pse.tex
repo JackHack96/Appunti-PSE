@@ -555,6 +555,8 @@ informazioni utili sia di controllo.
     \caption{Schema forward/backward path}
     \label{fig:forward-backward-path}
 \end{figure}
+
+\noindent
 SystemC ha definito due standard diversi di TLM. Nello standard 1.0 venivano proposti 3 diversi livelli di astrazione, ovvero
 \begin{itemize}
     \item Program View (PV)
@@ -564,17 +566,37 @@ SystemC ha definito due standard diversi di TLM. Nello standard 1.0 venivano pro
 tuttavia nello standard 2.0 sono stati abbandonati per concentrarsi invece nella relazione tra dati e tempo.
 Sono stati definiti quindi 3 modi livelli di accuratezza:
 \begin{itemize}
-    \item Untimed
+    \item \textbf{Untimed}
     \subitem Interfacce bloccanti
     \subitem Punti di sincronizzazione predefiniti
-    \item Loosely timed
+    \item \textbf{Loosely timed}
     \subitem Interfacce bloccanti
     \subitem Due punti di sincronizzazione (invocazione e ritorno)
-    \item Approximately timed
+    \item \textbf{Approximately timed}
     \subitem Interfacce non bloccanti
     \subitem Annotazione del tempo con fasi multiple durante la transazione
 \end{itemize}
+Le interfacce bloccanti, supportate dalle descrizioni UT e LT utilizzano solamente il forward path.
+L'initiator chiama il metodo \texttt{b\_transport} del target, che ritorna il valore nel payload stesso.
+Lo stile \textit{untimed} e il \textit{loosely timed} sono sufficientemente dettagliati per poter eseguire il boot 
+di sistema operativo sull'architettura simulata. Permettono anche meccanismi complessi come
+il \textit{temporal decoupling}, nel quale due processi che lavorano in contemporaneo a volte possono andare per conto proprio oltre il tempo attuale
+della simulazione, per poi arrivare al punto di sincronizzazione. Con questo stile posso solamente fare una stima del tempo trascorso con un minimo e un massimo.
+
+Nello stile \textit{approximately timed} le transazioni vengono divise in più fasi. Il protocollo base usa 4 fasi (per questo lo stile viene chiamato AT4):
+\begin{itemize}
+    \item Inizio richiesta (\texttt{BEGIN\_REQ})
+    \item Fine richiesta (\texttt{END\_REQ})
+    \item Inizio risposta (\texttt{BEGIN\_RESP})
+    \item Fine risposta (\texttt{END\_RESP})
+\end{itemize}
+La sincronizzazione avviene più frequentemente quindi di LT, per questo il tempo di simulazione è più lungo, ma ottengo una stima del tempo molto accurata.
+
+%TODO: migliorare TLM
+
 \section{SystemC AMS}
+
+
 \chapter{VHDL}
 VHDL è un linguaggio standard per la progettazione di hardware digitale. Può essere usato a diversi livelli di astrazione, che vanno da una descrizione algoritmica fino a quella di livello gate ma è lo standard per il livello RT. La progettazione può essere eseguita a diversi livelli che possono poi essere collegati tra loro. Il design può essere gerarchico, quindi con una struttura complessa, ed è possibile approcciare con un flusso di progettazione di tipo top-down oppure Bottom-up.
 \begin{itemize}
