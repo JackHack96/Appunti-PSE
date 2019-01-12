@@ -595,7 +595,16 @@ La sincronizzazione avviene più frequentemente quindi di LT, per questo il temp
 %TODO: migliorare TLM
 
 \section{SystemC AMS}
-SystemC AMS è un set di librerie che estendono SystemC in modo da poter supportare la simulazione di sistemi analogici.s
+SystemC AMS è un set di librerie che estendono SystemC in modo da poter supportare la simulazione di sistemi analogici, sia in tempo continuo che in tempo misto.
+Nelle descrizioni a tempo discreto la funzione esiste solo in punti ben precisi e i segnali e le quantità fisiche sono definiti in punti di tempo discreti. 
+Si assumono costanti in mezzo a questi punti.
+In quelle a tempo continuo la grandezza fisica che descrivo esiste in qualsiasi punto nel tempo come una equazione differenziale. I segnali e le
+quantità fisiche sono descritti come funzioni reali.
+
+Oltre alla distinzione tempo continuo/tempo discreto vi è la differenza tra descrizione conservativa e non conservativa.
+In una descrizione conservativa il comportamento del sistema segue le leggi della fisica (ad esempio nella descrizione
+di un circuito elettrico devono essere rispettate le leggi di Kirchhoff)
+Le due descrizioni possono essere usate nella stessa simulazione.
 
 \chapter{VHDL}
 VHDL è un linguaggio standard per la progettazione di hardware digitale. Può essere usato a diversi livelli di astrazione, che vanno da una descrizione algoritmica fino a quella di livello gate ma è lo standard per il livello RT. La progettazione può essere eseguita a diversi livelli che possono poi essere collegati tra loro. Il design può essere gerarchico, quindi con una struttura complessa, ed è possibile approcciare con un flusso di progettazione di tipo top-down oppure Bottom-up.
