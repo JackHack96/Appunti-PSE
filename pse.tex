@@ -609,15 +609,22 @@ Queste descrizioni sono adatte a descrivere sistemi fisici dinamici.
 Oltre alla distinzione tempo continuo/tempo discreto vi è la differenza tra descrizione conservativa e non conservativa.
 In una descrizione conservativa il comportamento del sistema segue le leggi della fisica (ad esempio nella descrizione
 di un circuito elettrico devono essere rispettate le leggi di Kirchhoff), mentre in una non conservativa
-non valgono ed è possibile descrivere dinamiche non lineari
+non valgono ed è possibile descrivere dinamiche non lineari.
 Una descrizione conservativa è computazionalmente più pesante di una non conservativa.
 Le due descrizioni possono essere usate nella stessa simulazione.
 
 SystemC AMS prevede 3 stili di modellazione:
 \begin{itemize}
     \item Timed Data Flow (TDF)
+    \subitem Tempo discreto, non conservativo
+    \subitem Scheduling statico basato su dataflow
     \item Linear Signal Flow (LSF)
+    \subitem Tempo continuo, non conservativo
+    \subitem Basato su equazioni algebriche e differenziali
+    \subitem Risolutori simbolici o numerici
     \item Electric Linear Network (ELN)
+    \subitem Tempo continuo, conservativo
+    \subitem Modellazione di reti elettriche seguendo le leggi di Kirchhoff
 \end{itemize}
 
 \chapter{VHDL}
