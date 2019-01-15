@@ -627,141 +627,14 @@ SystemC AMS prevede 3 stili di modellazione:
     \subitem Modellazione di reti elettriche seguendo le leggi di Kirchhoff
 \end{itemize}
 
+\begin{picture}[h]
+    \begin{tikzpicture}
+        \node (1) [draw, rounded rectangle] {rounded rectangle};
+    \end{tikzpicture}
+\end{picture}
+
 \chapter{VHDL}
-VHDL è un linguaggio standard per la progettazione di hardware digitale. Può essere usato a diversi livelli di astrazione, che vanno da una descrizione algoritmica fino a quella di livello gate ma è lo standard per il livello RT. La progettazione può essere eseguita a diversi livelli che possono poi essere collegati tra loro. Il design può essere gerarchico, quindi con una struttura complessa, ed è possibile approcciare con un flusso di progettazione di tipo top-down oppure Bottom-up.
-\begin{itemize}
-    \item Top-Down \\
-    Parto da una descrizione generale e vado a specializzare poi i singoli blocchi.
-    \item Bottom-Up\\
-    Modello blocchi specifici e poi vado a collegarli tra loro.
-\end{itemize}
-Permette di specificare controllore e datapath. Nato dagli anni '80 figlio del linguaggio ad oggetti ADA, nel 1992 diventa standard IEEE.\\
-Offre la possibilità di scrivere hardware:
-\begin{itemize}
-    \item Combinatorio
-    \item Sequenziale:
-    \begin{itemize}
-        \item Sincrono: con clock esplicito, identificato da template.
-        \item Asincrono: modellazione basata su eventi, non sintetizzabile in maniera automatica.
-    \end{itemize}
-\end{itemize}
 
-\section{Tempo}
-In VHDL abbiamo una simulazione con tempistiche accurate. A livello RT il tempo non è definito ma dettato dagli eventi, mentre a livelli più astratti sono io a definirlo esplicitamente
-\section{Utilizzi di VHDL}
-VHDL è nato per simulare, modellare, documentare, sintetizzare, verificare e testare l'hardware
-\begin{itemize}
-    \item Modellazione: specifico un design complesso utilizzando un approccio top-down, in particolare un approccio incrementale.\\
-    Con incrementale intendo la possibilità di suddividere il mio hardware in vari moduli e realizzarli con blocchi fittizi. Successivamente vado ad implementare i blocchi uno alla volta andando a testare il loro funzionamento ed eventualmente modificandoli. Questo mi evita la scrittura di grandi porzioni di codice senza eseguirlo e verificarlo.
-    \item Simulazione: verifico il comportamento del mio design. Ogni volta che la mia simulazione porta ad un risultato desiderato, vado a raffinare i miei moduli e simulare nuovamente.
-    \item Sintesi: dopo aver raffinato la mia descrizione ad un livello di dettaglio tale da poter produrre hardware in modo automatico implemento in hardware il mio progetto.
-    \item Prova formale: verifico che la mia descrizione combaci con specifiche ad alto livello.
-    \item Verifica: controllo la consistenza interna di sue passaggi consecutivi andando a provare una corretta implementazione.
-    \item Validazione: controllo che il mio sistema sia una soluzione soddisfacente ad un problema reale.
-    \item Documentazione: VHDL può essere utilizzato per documentare un progetto. La documentazione è usata come mezzo di comunicazione tra:
-    \begin{itemize}
-        \item uomo-tool
-        \item tool-tool
-        \item uomo-uomo
-    \end{itemize}
-\end{itemize}
-\section{Sintassi}
-Tipi:\\
-\begin{itemize}
-    \item Real
-    \item Integer
-    \begin{itemize}
-        \item signed
-        \item unsigned
-    \end{itemize}
-    \item Boolean
-    \item Character
-    \item Bit
-    \item Time
-    \item std\_logic
-    \begin{itemize}
-        \item U: non inizializzato.
-        \item X
-        \item 0
-        \item 1
-        \item Z
-        \item W: sconosciuto debole.
-        \item L: zero debole.
-        \item H: uno debole.
-        \item -: don't care.
-    \end{itemize}
-\end{itemize}
-Quando non inizializzo una variabile o un segnale prende o il valore minimo o il più a sinistra a seconda del tipo. In std\_logic prende U.
-Cose che puoi dichiarare:\\
-\begin{itemize}
-    \item Costanti:\\
-    \textbf{COSTANT nome:tipo:= exp}
-    \item Segnali:\\
-    collega tra loro design entities, sono nella sensitivity list dei processi(quindi a d ogni cambiamento scatta il processo), possono essere dichiarati solamente tra \textbf{ARCHITECTURE} e \textbf{BEGIN}.\\
-    dichiarazione: \textbf{SIGNAL} nome \textbf{:} tipo \textbf{:=} exp, assegnamento: S1 \textbf{\textless=} exp
-    \item Entity:\\
-    E' l'interfaccia composta da entity declaration e architecture body. Nella declaration vado ad indicare le porte di ingresso e uscita mentre nel body descrivo l'implementazione basandomi sul mix dei 3 stili: behavioral, data flow, structural. Equivalente a SC\_MODULE in SyetemC.\\
-    dichairazione:\\ %TODO -> non sono in grado di scriverlo.
-    ENTITY name IS\\
-    BEGIN\\
-        GENERIC(a:bit:='0', b:bit:='1');\\
-        PORT(i0, i1, i2: IN BIT(32 DOWNTO 0); o0, o1: OUT BIT(32 DOWNTO 0));\\
-    END nome\\
-    \\
-    body:\\
-    ARCHITECTURE nome\_arch OF nome IS\\
-        signed s:std\_logic\_vector(8 DOWNTO 0);\\
-    BEGIN\\
-        PROCESS(s)\\
-            variable a:bit:='1';\\
-        BEGIN\\
-            .\\
-            .\\
-            .\\
-        END PROCESS\\
-    END nome\_arch
-\end{itemize}
-\chapter{Esercizi}
-Si consideri il seguente spezzone di codice SystemC comportamentale, che si vuole raffinare a livello RT, garantendo
-la latenza minima e il minimo numero di componenti, sotto il vincolo di utilizzare un solo sommatore.
-\begin{sourcecode}{C++}
-    // input ports reading
-    a = a_in.read();
-    b = b_in.read();
-    c = c_in.read();
-    while(a < b){
-        d = a + a * (b + 1);
-        e = e + c * a;
-        f = c * a + d;
-        if(e < f)
-            f_out.write(a + b);
-        else
-            f_out.write(a * b);
-        a = a + b;
-    }
-\end{sourcecode}
-\begin{itemize}
-    \item Si assuma che tutte le variabili siano numeri interi con segno a $N$ bit e che tutte le variabili esplicitamente
-    lette o scritte siano porte di ingresso o uscita del modulo.
-    \item Si identifichino eventuali ottimizzazioni del codice dato.
-    \item Si identifichi lo scheduling a latenza minima che utilizza il minimo numero di operatori.
-    \item Si descriva in VHDL il risultato dello scheduling mediante una EFSM composta da due processi.
-    \item Si identifichi una possibile allocazione dei registri che tenda a minimizzarne il numero.
-    \item Si descriva in VHDL data-flow la parte del \textit{data-path} del circuito identificatore che effettua
-    il solo calcolo di aggiornamento della variabile \texttt{f}.
-\end{itemize}
-Innanzitutto cerchiamo di ottimizzare. La lettura è apposto così, poi abbiamo uno spezzone ottimizzabile:
-\begin{sourcecode}{C++}
-        d = a + a * (b + 1);
-        e = e + c * a;
-        f = c * a + d;
-\end{sourcecode}
-La prima riga è equivalente a:\\
-\texttt{a + a * b + a}, \texttt{2 * a + a * b};\\
-tenendo conto del fatto che abbiamo un solo sommatore, preferiamo tenere i prodotti, quindi \texttt{2 * a + a * b}.
-Le altre due righe non sono ottimizzabili in quest'ottica.
-
-Ora costruiamo il data flow graph
 
 \end{document}
 
