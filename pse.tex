@@ -627,18 +627,30 @@ SystemC AMS prevede 3 stili di modellazione:
     \subitem Modellazione di reti elettriche seguendo le leggi di Kirchhoff
 \end{itemize}
 
-\subsection{Timed Data Flow}
-Questo stile si basa su un \textit{synchronous data flow} (SDF), che descrivono un sistema a eventi discreti.
-Ogni evento discreto contiene un metodo C++ che calcola una funzione matematica 
-\subsection{Linear Signal Flow}
-\subsection{Electric Linear Network}
-
 \begin{figure}[h]
 \centering
 \includegraphics[width=1\linewidth]{"img/ams styles"}
 \caption{Gli stili di SystemC AMS}
 \label{fig:ams-styles}
 \end{figure}
+
+\subsection{Timed Data Flow}
+Questo stile si basa su un \textit{synchronous data flow} (SDF), che descrive un sistema a eventi discreti.
+Ogni modulo di evento discreto contiene un metodo C++ che calcola una funzione matematica.
+
+Supponiamo di dover esprimere $f_C(f_B(f_A))$.
+\begin{figure}[h]
+\centering
+\includegraphics[width=1\linewidth]{"img/tdf"}
+\caption{$f_C(f_B(f_A))$}
+\label{fig:tdf}
+\end{figure}
+Una funzione viene eseguita se e solo se ci sono un numero di campioni sufficiente per ogni porta di input.
+
+\subsection{Linear Signal Flow}
+\subsection{Electric Linear Network}
+
+
 
 
 \chapter{VHDL}
