@@ -654,29 +654,29 @@ eseguita al di fuori dello scheduler \textit{event-based} del SystemC puro, port
 %TODO: parte su delay che non è chiara
 
 Un modulo TDF è strutturato in questa maniera:
-\begin{systemc}
-SCA_TDF_MODULE(my_tdf_module)
+\begin{systemc}{my\_tdf\_module.h}
+SCA_TDF_MODULE(my_tdf_module) ?\tikzmark{my_tdf_module}?
 {
     // port declaration
-    sca_tdf::sca_in<double>     in;
+    sca_tdf::sca_in<double>     in; ?\tikzmark{tdf_ports}?
     sca_tdf::sca_out<double>    out;
     
-    SCA_CTOR(my_tdf_module){
+    SCA_CTOR(my_tdf_module){ ?\tikzmark{tdf_constructor}?
     }
     
-    void set_attributes(){
+    void set_attributes(){ ?\tikzmark{tdf_attributes}?
         // module and port attributes
     }
     
-    void initialize(){
+    void initialize(){ ?\tikzmark{tdf_initialize}?
         // initial values of ports with a delay
     }
     
-    void processing(){
+    void processing(){ ?\tikzmark{tdf_processing}?
         // time-domain signal processing behaviour or algorithm
     }
     
-    void ac_processing(){
+    void ac_processing(){ ?\tikzmark{tdf_acprocessing}?
         // small-signal frequency-domain behaviour
     }
 };
