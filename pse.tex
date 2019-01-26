@@ -681,8 +681,29 @@ SCA_TDF_MODULE(my_tdf_module) ?\tikzmark{my_tdf_module}?
     }
 };
 \end{systemc}
+\begin{tikzpicture}[remember picture]
+    \draw[overlay, ->] ($(pic cs:my_tdf_module)+(0,0.1)$) -- ($(pic cs:my_tdf_module)+(1,0.1)$) node [right]{dichiarazione del modulo};
+    \draw[overlay, ->] ($(pic cs:tdf_ports)$) -- ($(pic cs:tdf_ports)+(1,0)$) node [right]{porte di I/O};
+    \draw[overlay, ->] ($(pic cs:tdf_constructor)+(0,0.1)$) -- ($(pic cs:tdf_constructor)+(1,0.1)$) node [right]{metodo costruttore};
+    \draw[overlay, ->] ($(pic cs:tdf_attributes)+(0,0.1)$) -- ($(pic cs:tdf_attributes)+(0.4,0.1)$) node [right]{definizione attributi delle porte e del modulo};
+    \draw[overlay, ->] ($(pic cs:tdf_initialize)+(0,0.1)$) -- ($(pic cs:tdf_initialize)+(0.4,0.1)$) node [right]{definizione valori iniziali};
+    \draw[overlay, ->] ($(pic cs:tdf_processing)+(0,0.1)$) -- ($(pic cs:tdf_processing)+(0.4,0.1)$) node [right]{implementazione funzionalità effettive};
+    \draw[overlay, ->] ($(pic cs:tdf_acprocessing)+(0,0.1)$) -- ($(pic cs:tdf_acprocessing)+(0.4,0.1)$) node [right]{implementazione funzionalità e del rumore};
+\end{tikzpicture}
 
 \subsection{Linear Signal Flow}
+In LSF, il comportamento del modello viene definito come relazioni tra variabili di un insieme di equazioni differenziali.
+A differenza di TDF, il segnale viene rappresentato da un valore reale.
+In LSF, il flusso del segnale viene rappresentato con l'ausilio di un diagramma a blocchi, dove le parti elementari come 
+la moltiplicazione o l'addizione costituiscono i blocchi e le linee di connessione i segnali.
+I blocchi elementari sono stati predefiniti in SystemC AMS e non è possibile estenderli per crearne di nuovi. I segnali
+per l'interconnessione dei blocchi sono segnali reali, per tanto per interfacciare un modulo LSF serve discretizzare.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{"img/lsf"}
+    \caption{Diagramma a blocchi dell'equazione $y(t)=k_1\frac{dx(t)}{dt}+k_2\frac{dy(t)}{dt}$}
+    \label{fig:lsf}
+\end{figure}
 
 \subsection{Electric Linear Network}
 
