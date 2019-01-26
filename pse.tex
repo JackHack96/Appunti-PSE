@@ -705,6 +705,49 @@ per l'interconnessione dei blocchi sono segnali reali, per tanto per interfaccia
     \label{fig:lsf}
 \end{figure}
 
+\begin{systemc}{my\_structural\_lsf\_model}
+SC_MODULE(my_structural_lsf_model)
+{
+    sca_lsf::sca_in     x;
+    sca_lsf::sca_out    y;
+    
+    sca_lsf::sca_gain   gain1, gain2;
+    sca_lsf::sca_dot    dot;
+    sca_lsf::sca_add    add;
+    
+    my_structural_lsf_model(sc_core::sc_module_name name,
+                            double k1,
+                            double k2):
+        x("x"),
+        y("y"),
+        gain1("gain1", k1),
+        gain2("gain2", k2),
+        dot("dot"),
+        add("add"),
+        sig1("sig1"),
+        sig2("sig2"),
+        sig3("sig3")
+    {
+        gain1.x(x);
+        gain1.y(sig1);
+        gain1.set_timestep(1, sc_core::SC_MS);
+        
+        add.x1(sig1);
+        add.x2(sig3);
+        add.y(sig2);
+        
+        dot1.x(sig2);
+        dot1.y(y);
+        
+        gain2.x(y);
+        gain2.y(sig3);
+    }
+    
+private:
+    sca_lsf::sca_signal sig1, sig2, sig3;
+};
+\end{systemc}
+
 \subsection{Electric Linear Network}
 
 
