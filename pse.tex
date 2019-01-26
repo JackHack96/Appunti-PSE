@@ -637,6 +637,8 @@ SystemC AMS prevede 3 stili di modellazione:
 \subsection{Timed Data Flow}
 Questo stile si basa su un \textit{synchronous data flow} (SDF), che descrive un sistema a eventi discreti.
 Ogni modulo di evento discreto contiene un metodo C++ che calcola una funzione matematica.
+Una funzione viene eseguita se e solo se ci sono un numero di campioni sufficiente per ogni porta di input, dove il
+numero di campioni sufficiente è un valore fissato a priori.
 
 Supponiamo di dover esprimere $f_C(f_B(f_A))$.
 \begin{figure}[h]
@@ -645,10 +647,43 @@ Supponiamo di dover esprimere $f_C(f_B(f_A))$.
 \caption{$f_C(f_B(f_A))$}
 \label{fig:tdf}
 \end{figure}
-Una funzione viene eseguita se e solo se ci sono un numero di campioni sufficiente per ogni porta di input, dove il
-numero di campioni sufficiente è un valore fissato a priori.
+
+Lo scheduling in TDF è statico, in quanto viene definita a priori una sequenza di eventi discreti che viene
+eseguita al di fuori dello scheduler \textit{event-based} del SystemC puro, portando ad un aumento dell'efficienza.
+
+%TODO: parte su delay che non è chiara
+
+Un modulo TDF è strutturato in questa maniera:
+\begin{systemc}
+SCA_TDF_MODULE(my_tdf_module)
+{
+    // port declaration
+    sca_tdf::sca_in<double>     in;
+    sca_tdf::sca_out<double>    out;
+    
+    SCA_CTOR(my_tdf_module){
+    }
+    
+    void set_attributes(){
+        // module and port attributes
+    }
+    
+    void initialize(){
+        // initial values of ports with a delay
+    }
+    
+    void processing(){
+        // time-domain signal processing behaviour or algorithm
+    }
+    
+    void ac_processing(){
+        // small-signal frequency-domain behaviour
+    }
+};
+\end{systemc}
 
 \subsection{Linear Signal Flow}
+
 \subsection{Electric Linear Network}
 
 
