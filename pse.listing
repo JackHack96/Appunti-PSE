@@ -1,3 +1,4 @@
-        d = a + a * (b + 1);
-        e = e + c * a;
-        f = c * a + d;
+ENTITY <entity_name> IS
+    -- Generic declarations
+    -- Port declarations
+END ENTITY;
