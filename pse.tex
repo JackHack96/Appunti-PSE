@@ -799,18 +799,18 @@ ENTITY <entity_name> IS
         -- Note: CONSTANT is assumed and isn't required
         tphz, tplz          : TIME        := 3 ns;
         default_value       : INTEGER     := 1;
-        cnt_dir             : STRING      := "up"?\tikzmark{vhdl_value}?
+        cnt_dir             : STRING      := "up"?\tikzmark{vhdl_generic}?
     );
-    -- Port declarations
+    -- port declarations
 END ENTITY;
 \end{sourcecode}
 \begin{tikzpicture}[remember picture]
-    \draw[overlay, ->] ($(pic cs:vhdl_value)+(-7,-0.1)$) -- ($(pic 
-    cs:vhdl_value)+(-3,-0.8)$) node [right]{nome della costante};
-    \draw[overlay, ->] ($(pic cs:vhdl_value)+(-3,-0.1)$) -- ($(pic 
-    cs:vhdl_value)+(0,-0.4)$) node [right]{tipo della costante};
-    \draw[overlay, ->] ($(pic cs:vhdl_value)+(0.0,0.1)$) -- ($(pic 
-    cs:vhdl_value)+(0.2,0.1)$) node [right]{valore della costante};
+    \draw[overlay, ->] ($(pic cs:vhdl_generic)+(-7,-0.1)$) -- ($(pic 
+    cs:vhdl_generic)+(-3,-0.8)$) node [right]{nome della costante};
+    \draw[overlay, ->] ($(pic cs:vhdl_generic)+(-3,-0.1)$) -- ($(pic 
+    cs:vhdl_generic)+(0,-0.4)$) node [right]{tipo della costante};
+    \draw[overlay, ->] ($(pic cs:vhdl_generic)+(0.0,0.1)$) -- ($(pic 
+    cs:vhdl_generic)+(0.2,0.1)$) node [right]{valore della costante};
 \end{tikzpicture}
 La sezione comincia con la parola chiave \texttt{GENERIC}, il cui ambiente 
 viene indicato con delle parentesi tonde seguite da un punto e virgola.
@@ -828,7 +828,25 @@ I valori dichiarati all'interno della sezione possono essere sovrascritti
 durante la compilazione, ad esempio passandoli come parametri di al compilatore.
 
 La sezione ``\texttt{port declarations}'' definisce tutto l'I/O e si piazza 
-dopo le \texttt{generic}.
+dopo le \texttt{generic}. Il modello è anche simile:
+\begin{sourcecode}{VHDL}
+ENTITY <entity_name> IS
+    -- generic declarations
+    PORT (
+        SIGNAL clk, clr : IN    BIT;
+        -- Note: SIGNAL is assumed and isn't required
+        q               : OUT   BIT?\tikzmark{vhdl_port}?
+    );
+END ENTITY;
+\end{sourcecode}
+\begin{tikzpicture}[remember picture]
+    \draw[overlay, ->] ($(pic cs:vhdl_port)+(-7,-0.1)$) -- ($(pic 
+    cs:vhdl_port)+(-3,-0.8)$) node [right]{nome della costante};
+    \draw[overlay, ->] ($(pic cs:vhdl_port)+(-3,-0.1)$) -- ($(pic 
+    cs:vhdl_port)+(0,-0.4)$) node [right]{tipo della costante};
+    \draw[overlay, ->] ($(pic cs:vhdl_port)+(0.0,0.1)$) -- ($(pic 
+    cs:vhdl_port)+(0.2,0.1)$) node [right]{valore della costante};
+\end{tikzpicture}
 
 \end{document}
 
