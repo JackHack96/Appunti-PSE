@@ -952,6 +952,25 @@ PACKAGE BODY <identifier> IS
     -- function definitions
 END PACKAGE BODY;
 \end{sourcecode}
+Riportiamo anche un possibile esempio:
+\begin{sourcecode}{VHDL}
+PACKAGE filt_cmp IS
+    TYPE state_type IS (idle, tap1, tap2, tap3, tap4);
+    FUNCTION compare (variable a, b: integer) RETURN boolean;
+END PACKAGE;
+PACKAGE BODY filt_cmp IS
+    FUNCTION compare (variable a, b: INTEGER) IS
+        VARIABLE temp: BOOLEAN;
+    BEGIN
+        IF a < b THEN
+            temp := true;
+        ELSE
+            temp := false;
+        END IF;
+        RETURN temp;
+    END FUNCTION compare;
+END PACKAGE BODY;
+\end{sourcecode}
 
 \end{document}
 
