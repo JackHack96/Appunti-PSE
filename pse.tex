@@ -908,6 +908,18 @@ permette di assegnare un nome unico alla coppia
 \textit{entity}-\textit{architecture}, andando ad indentificare singolarmente 
 una specifica architettura.
 
+La struttura è la seguente:
+\begin{sourcecode}{VHDL}
+CONFIGURATION <identifier> OF <entity_name> IS
+    FOR <architecture_name>
+        FOR <instance_name> : <component_name> USE <entity>(<architecture>)
+        END FOR;
+        FOR <instance_name> : <component_name> USE <configuration_name>
+        END FOR;
+    END FOR;
+END CONFIGURATION;
+\end{sourcecode}
+
 \subsection{Package}
 
 \end{document}
