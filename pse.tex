@@ -770,8 +770,10 @@ sottoinsieme specifico di costrutti e che si seguano degli stili predefiniti qua
 \section{Design units}
 VHDL mette a disposizione 4 unità base per la modellazione:
 \begin{itemize}
-    \item \textbf{Entity}: costituisce ``l'interfaccia'' del modello
-    \item \textbf{Architecture}: costituisce la funzione effettiva del modello
+    \item \textbf{Entity}: costituisce ``l'interfaccia'' del modello (si può 
+    anche pensare come un simbolo in uno schema di circuito)
+    \item \textbf{Architecture}: costituisce la funzione effettiva del modello 
+    (si può pensare come all'effettivo schema di componenti primitivi)
     \item \textbf{Configuration}: si utilizza per associare un'interfaccia ad un'architettura specifica
     \item \textbf{Package}: collezione di informazioni che possono essere caricati in altri modelli, come le librerie
 \end{itemize}
@@ -784,7 +786,9 @@ ENTITY <entity_name> IS
 END ENTITY;
 \end{sourcecode}
 Il nome dell'interfaccia può essere una qualsiasi stringa alfanumerica. 
-La dichiarazione 
+Nella sezione \textit{Generic declarations} possiamo passare valori 
+all'\textit{entity} a tempo di compilazione, in modo da poterla rendere 
+parametrizzabile quando viene utilizzata in più occasioni.
 
 
 \end{document}
