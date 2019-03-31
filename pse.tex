@@ -928,15 +928,29 @@ END CONFIGURATION;
 \subsection{Package}
 I \textit{package} sono un modo per immagazzinare informazioni per futuri 
 modelli e possono essere pensati come a delle ``librerie'' (in maniera analoga 
-al linguaggio Java).
+al linguaggio Java). Più propriamente, si definisce libreria una directory che 
+contiene uno o più \textit{package}.
 Il VHDL mette a disposizione due \textit{package} fondamentali, che sono:
 \begin{itemize}
     \item \texttt{Standard}
     \item \texttt{TEXTIO}
 \end{itemize}
+In aggiunta, è disponibile anche la libreria \texttt{IEEE}, definita dallo 
+stesso ente per il linguaggio VHDL e altre librerie dei singoli produttori.
 Un \textit{package} è costituito da una dichiarazione obbligatoria, nella quale 
 si mettono le dichiarazioni dei tipi e dei sottoprogrammi, e un corpo opzionale 
 nel quale si danno le definizioni vere e proprie dei sottoprogrammi.
+
+La struttura di un \textit{package} è la seguente:
+\begin{sourcecode}{VHDL}
+PACKAGE <identifier> IS
+    -- type declarations
+    -- function declarations
+END PACKAGE;
+PACKAGE BODY <identifier> IS
+    -- function definitions
+END PACKAGE BODY;
+\end{sourcecode}
 
 \end{document}
 
