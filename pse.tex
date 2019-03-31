@@ -840,13 +840,16 @@ ENTITY <entity_name> IS
 END ENTITY;
 \end{sourcecode}
 \begin{tikzpicture}[remember picture]
-    \draw[overlay, ->] ($(pic cs:vhdl_port)+(-7,-0.1)$) -- ($(pic 
-    cs:vhdl_port)+(-3,-0.8)$) node [right]{nome della costante};
-    \draw[overlay, ->] ($(pic cs:vhdl_port)+(-3,-0.1)$) -- ($(pic 
-    cs:vhdl_port)+(0,-0.4)$) node [right]{tipo della costante};
+    \draw[overlay, ->] ($(pic cs:vhdl_port)+(-4.8,-0.1)$) -- ($(pic 
+    cs:vhdl_port)+(-3,-0.8)$) node [right]{nome della porta};
+    \draw[overlay, ->] ($(pic cs:vhdl_port)+(-1.4,-0.1)$) -- ($(pic 
+    cs:vhdl_port)+(0,-0.4)$) node [right]{modalità della porta};
     \draw[overlay, ->] ($(pic cs:vhdl_port)+(0.0,0.1)$) -- ($(pic 
-    cs:vhdl_port)+(0.2,0.1)$) node [right]{valore della costante};
+    cs:vhdl_port)+(0.8,0.1)$) node [right]{tipo della porta};
 \end{tikzpicture}
+Come per la sezione \texttt{GENERIC} anche la \texttt{PORT} comincia con un 
+identificativo seguito dalle parentesi, all'interno delle quali si definiscono 
+le diverse porte.
 
 \end{document}
 
