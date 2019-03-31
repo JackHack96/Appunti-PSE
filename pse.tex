@@ -878,7 +878,32 @@ I processi possono essere scritti in 3 differenti stili:
 Lo stile \textit{behavioral} può a sua volta espresso in \textit{RTL} (come in 
 SystemC) oppure in stile \textit{functional}, senza il tempo.
 
+\pagebreak
+La struttura di una \textit{architecture} è la seguente:
+\begin{sourcecode}{VHDL}
+ARCHITECTURE <identifier> OF <entity_identifier> IS
+    -- Architecture declaration section
+    SIGNAL temp     : INTEGER := 1;     -- signal declarations
+    CONSTANT load   : BOOLEAN := true;  -- constant declarations
+    TYPE states IS (S1, S2, S3, S4);    -- type declarations
+    -- Component declarations
+    -- Subtype declarations
+    -- Attribute declarations
+    -- Attribute specifications
+    -- Subprogram declarations
+    -- Subprogram body
+BEGIN
+    -- Process statements
+    -- Concurrent procedural calls
+    -- Concurrent signal assignment
+    -- Component instantiation statements
+    -- Generate statements
+END ARCHITECTURE;
+\end{sourcecode} 
+
 \subsection{Configuration}
+La sezione \textit{configuration} viene utilizzata qualora vi siano più di una 
+\textit{architecture} associata ad un'\textit{entity}.
 
 \subsection{Package}
 
