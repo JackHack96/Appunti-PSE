@@ -987,7 +987,26 @@ PACKAGE BODY filt_cmp IS
 END PACKAGE BODY;
 \end{sourcecode}
 
-\subsection{Un contatore a 4 bit}
+
+
+\section{Tipi predefiniti}
+In VHDL esistono una serie di tipi predefiniti. Quelli messi a disposizione 
+dallo standard package (quello incluso di default) sono:
+\begin{itemize}
+    \item \texttt{BIT}\\
+    Rappresenta semplicemente un bit. Può essere usato:
+    \begin{itemize}
+        \item Come valore booleano semplice\\
+        {\mintinline{VHDL}{SIGNAL a_temp : BIT;}}
+        \item Come array di valori booleani\\
+        {\mintinline{VHDL}{SIGNAL temp: BIT_VECTOR(3 DOWNTO 0);}}\\
+        {\mintinline{VHDL}{SIGNAL temp: BIT_VECTOR(0 TO 3);}}
+    \end{itemize}
+    \item \texttt{BOOLEAN}\\
+    Rappresenta un valore booleano. Può assumere solo valore \texttt{true} o 
+    \texttt{false}.
+\end{itemize}
+\section{Un contatore a 4 bit}
 Vediamo un esempio completo di un contatore a 4 bit in VHDL:
 \begin{vhdl}{counter.vhdl}
 -- Including IEEE library for the std_logic types
