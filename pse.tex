@@ -1030,6 +1030,35 @@ dallo standard package (quello incluso di default) sono:
     \item \texttt{REAL}\\
     Rappresenta un numero a virgola mobile con doppia precisione
 \end{itemize}
+I tipo messi a disposizione dalla libreria IEEE sono principalmente:
+\begin{itemize}
+    \item \texttt{STD\_LOGIC}\\
+    Rappresenta un tipo logico che può assumere i seguenti valori:
+    \begin{itemize}
+        \item \texttt{U}\\
+        Stato non inizializzato
+        \item \texttt{X}\\
+        Stato sconosciuto
+        \item \texttt{0}\\
+        Stato logico $0$
+        \item \texttt{1}\\
+        Stato logico $1$
+        \item \texttt{Z}\\
+        Stato di alta impedenza
+        \item \texttt{W}\\
+        Segnale debole, impossibile distinguere $0$ da $1$
+        \item \texttt{L}\\
+        Segnale debole, probabilmente è $0$
+        \item \texttt{H}\\
+        Segnale debole, probabilmente è $1$
+        \item \texttt{-}\\
+        Don't care
+    \end{itemize}
+    
+   \item \texttt{NUMERIC\_STD}
+   Famiglia di tipi per aritmetica senza segno o con segno.
+   I più usati sono i tipi \texttt{UNSIGNED} e \texttt{SIGNED}.
+\end{itemize}
 \section{Un contatore a 4 bit}
 Vediamo un esempio completo di un contatore a 4 bit in VHDL:
 \begin{vhdl}{counter.vhdl}
