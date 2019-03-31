@@ -786,10 +786,30 @@ ENTITY <entity_name> IS
 END ENTITY;
 \end{sourcecode}
 Il nome dell'interfaccia può essere una qualsiasi stringa alfanumerica. 
-Nella sezione \textit{Generic declarations} possiamo passare valori 
-all'\textit{entity} a tempo di compilazione, in modo da poterla rendere 
-parametrizzabile quando viene utilizzata in più occasioni.
+Nella sezione ``\texttt{Generic declarations}'' possiamo passare valori 
+alla \texttt{ENTITY} a tempo di compilazione, in modo da poterla rendere 
+parametrizzabile quando viene utilizzata in più occasioni, mentre nella sezione 
+``\texttt{Port declarations}'' si definisco le diverse porte di I/O.
 
+La sezione \texttt{generic} presenta il seguente modello:
+\begin{sourcecode}{VHDL}
+ENTITY <entity_name> IS
+    GENERIC (
+        CONSTANT tplh, tphl : TIME        := 5 ns;
+        -- Note: CONSTANT is assumed and isn't required
+        tphz, tplz          : TIME        := 3 ns;
+        default_value       : INTEGER     := 1;
+        cnt_dir?\tikzmark{vhdl_constant_name}?             : 
+        STRING?\tikzmark{vhdl_type}?      := "up"?\tikzmark{vhdl_value}?
+    );
+    -- Port declarations
+END ENTITY;
+\end{sourcecode}
+\begin{tikzpicture}[remember picture]
+    \draw[overlay, ->] ($(pic cs:vhdl_constant_name)+(0,0.1)$) -- ($(pic 
+    cs:vhdl_type)+(1,0.1)$) node [right]{nome della costante};
+\end{tikzpicture}
+I valori dichiarati all'interno della sezione possono essere sovrascritti 
 
 \end{document}
 
