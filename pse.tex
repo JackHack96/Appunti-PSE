@@ -132,7 +132,7 @@ In generale, un sistema embedded è costituito dalle seguenti componenti:
 \end{itemize}
 Il trend attuale è di portare tutto ciò in un singolo chip (SoC - \textit{System on a Chip}), dove microprocessore,
 memoria e altre componenti vengono montate su un singolo chip, collegate da un bus. Esempi di SoC moderni sono i
-Qualcomm\textsuperscript{\tiny\textregistered} Snapdragon o i Samsung\textsuperscript{\tiny\textregistered} Exynos.
+Qualcomm\textsuperscript{\textregistered} Snapdragon o i Samsung\textsuperscript{\textregistered} Exynos.
 Esiste anche un'alternativa, dove le componenti invece di trovarsi in un unico chip si trovano in una singola
 board (SoB - \textit{System on a Board}).
 
@@ -601,7 +601,7 @@ La descrizione di un sistema misto può essere fatta in tempo continuo o in temp
 In tempo discreto i segnali e le quantità fisiche sono definite in punti precisi e si assumono costanti nel mezzo.
 Il comportamento viene descritto in maniera procedurale utilizzando segnali campionati.
 Questo tipo di descrizione si adatta particolarmente a sistemi dove il \textit{signal processing} è abbondante.
-In descrizioni a tempo continuoi segnali e le quantità fisiche sono descritti come funzioni reali del tempo,
+In descrizioni a tempo continuo i segnali e le quantità fisiche sono descritti come funzioni reali del tempo,
 considerato come un valore continuo.
 Il comportamento viene descritto da equazioni algebriche o differenziali, risolte da complessi algoritmi.
 Queste descrizioni sono adatte a descrivere sistemi fisici dinamici.
@@ -615,14 +615,14 @@ Le due descrizioni possono essere usate nella stessa simulazione.
 
 SystemC AMS prevede 3 stili di modellazione:
 \begin{itemize}
-    \item Timed Data Flow (TDF)
+    \item \textbf{Timed Data Flow} (TDF)
     \subitem Tempo discreto, non conservativo
     \subitem Scheduling statico basato su dataflow
-    \item Linear Signal Flow (LSF)
+    \item \textbf{Linear Signal Flow} (LSF)
     \subitem Tempo continuo, non conservativo
     \subitem Basato su equazioni algebriche e differenziali
     \subitem Risolutori simbolici o numerici
-    \item Electric Linear Network (ELN)
+    \item \textbf{Electric Linear Network} (ELN)
     \subitem Tempo continuo, conservativo
     \subitem Modellazione di reti elettriche seguendo le leggi di Kirchhoff
 \end{itemize}
