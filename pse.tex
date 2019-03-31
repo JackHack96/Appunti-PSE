@@ -990,11 +990,14 @@ END PACKAGE BODY;
 \subsection{Un contatore a 4 bit}
 Vediamo un esempio completo di un contatore a 4 bit in VHDL:
 \begin{vhdl}{counter.vhdl}
+-- Including IEEE library for the std_logic types
 library ieee ;
 use ieee.std_logic_1164.all;
 use ieee.std_logic_unsigned.all;
 
-entity counter is 
+-- Defining the entity
+entity counter is
+    -- Don't need any generic, so we go straight to the port declaration
     port(
         clk     :  in   std_logic;
         reset   :  in   std_logic;
@@ -1003,9 +1006,12 @@ entity counter is
     );
 end counter;
 
-architecture behav of counter is         
+-- Defining the architecture
+architecture behav of counter is
+    -- Declaration section       
     signal pre_count: std_logic_vector(3 downto 0);
 begin
+    -- Definition section
     process(clk, enable, reset)
     begin
         if reset = '1' then
