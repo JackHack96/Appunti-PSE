@@ -907,14 +907,19 @@ La sezione \textit{configuration} viene utilizzata qualora vi siano più di una
 permette di assegnare un nome unico alla coppia 
 \textit{entity}-\textit{architecture}, andando ad indentificare singolarmente 
 una specifica architettura.
+Nonostante sia supportato dalla sintesi, è più comunemente utilizzato nella 
+simulazione, dove è più probabile avere più architetture definite per una 
+singola \textit{entity}.
 
 La struttura è la seguente:
 \begin{sourcecode}{VHDL}
 CONFIGURATION <identifier> OF <entity_name> IS
     FOR <architecture_name>
-        FOR <instance_name> : <component_name> USE <entity>(<architecture>)
+        FOR <instance_name> : <component_name> USE
+            <entity>(<architecture>)
         END FOR;
-        FOR <instance_name> : <component_name> USE <configuration_name>
+        FOR <instance_name> : <component_name> USE
+            <configuration_name>
         END FOR;
     END FOR;
 END CONFIGURATION;
