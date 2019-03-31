@@ -938,6 +938,11 @@ Il VHDL mette a disposizione due \textit{package} fondamentali, che sono:
 In aggiunta, è disponibile anche la libreria \texttt{IEEE}, definita dallo 
 stesso ente per il linguaggio VHDL e altre librerie dei singoli produttori.
 
+Per utilizzare una libreria all'interno di un progetto sono necessarie due 
+istruzioni, ovvero \texttt{LIBRARY} e \texttt{USE}.
+La prima definisce il nome della libreria a cui ci si riferirà in seguito 
+mentre la seconda carica effettivamente la libreria.
+
 Un \textit{package} è costituito da una dichiarazione obbligatoria, nella quale 
 si mettono le dichiarazioni dei tipi e dei sottoprogrammi, e un corpo opzionale 
 nel quale si danno le definizioni vere e proprie dei sottoprogrammi.
@@ -971,6 +976,8 @@ PACKAGE BODY filt_cmp IS
     END FUNCTION compare;
 END PACKAGE BODY;
 \end{sourcecode}
+
+
 
 \end{document}
 
