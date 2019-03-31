@@ -1059,6 +1059,7 @@ I tipo messi a disposizione dalla libreria IEEE sono principalmente:
    Famiglia di tipi per aritmetica senza segno o con segno.
    I più usati sono i tipi \texttt{UNSIGNED} e \texttt{SIGNED}.
 \end{itemize}
+\newpage
 \section{Un contatore a 4 bit}
 Vediamo un esempio completo di un contatore a 4 bit in VHDL:
 \begin{vhdl}{counter.vhdl}
@@ -1069,7 +1070,7 @@ use ieee.std_logic_unsigned.all;
 
 -- Defining the entity
 entity counter is
-    -- Don't need any generic, so we go straight to the port declaration
+    -- Don't need any generic, straight to the port declaration
     port(
         clk     :  in   std_logic;
         reset   :  in   std_logic;
