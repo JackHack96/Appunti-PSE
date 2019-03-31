@@ -799,17 +799,24 @@ ENTITY <entity_name> IS
         -- Note: CONSTANT is assumed and isn't required
         tphz, tplz          : TIME        := 3 ns;
         default_value       : INTEGER     := 1;
-        cnt_dir?\tikzmark{vhdl_constant_name}?             :       STRING 
-        ?\tikzmark{vhdl_type}?      := "up"?\tikzmark{vhdl_value}?
+        cnt_dir             : STRING      := "up"?\tikzmark{vhdl_value}?
     );
     -- Port declarations
 END ENTITY;
 \end{sourcecode}
 \begin{tikzpicture}[remember picture]
-    \draw[overlay, ->] ($(pic cs:vhdl_constant_name)+(0,0.1)$) -- ($(pic 
-    cs:vhdl_type)+(1,0.1)$) node [right]{nome della costante};
+    \draw[overlay, ->] ($(pic cs:vhdl_value)+(-7,-0.1)$) -- ($(pic 
+    cs:vhdl_value)+(-3,-0.8)$) node [right]{nome della costante};
+    \draw[overlay, ->] ($(pic cs:vhdl_value)+(-3,-0.1)$) -- ($(pic 
+    cs:vhdl_value)+(0,-0.4)$) node [right]{tipo della costante};
+    \draw[overlay, ->] ($(pic cs:vhdl_value)+(0.0,0.1)$) -- ($(pic 
+    cs:vhdl_value)+(0.2,0.1)$) node [right]{valore della costante};
 \end{tikzpicture}
 I valori dichiarati all'interno della sezione possono essere sovrascritti 
+durante la compilazione, ad esempio passandoli come parametri di al compilatore.
+Le varie costanti vengono separate l'una dall'altra tramite il punto e virgola, 
+notare infatti che nell'ultima riga è assente, in quanto \texttt{cnt_dir} non è 
+succeduto da nessuno
 
 \end{document}
 
