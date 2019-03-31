@@ -778,6 +778,7 @@ VHDL mette a disposizione 4 unità base per la modellazione:
     \item \textbf{Package}: collezione di informazioni che possono essere caricati in altri modelli, come le librerie
 \end{itemize}
 
+\subsection{Entity}
 \noindent Una \textit{entity} possiede la seguente struttura:
 \begin{sourcecode}{VHDL}
 ENTITY <entity_name> IS
@@ -843,13 +844,25 @@ END ENTITY;
     \draw[overlay, ->] ($(pic cs:vhdl_port)+(-4.8,-0.1)$) -- ($(pic 
     cs:vhdl_port)+(-3,-0.8)$) node [right]{nome della porta};
     \draw[overlay, ->] ($(pic cs:vhdl_port)+(-1.4,-0.1)$) -- ($(pic 
-    cs:vhdl_port)+(0,-0.4)$) node [right]{modalità della porta};
+    cs:vhdl_port)+(0,-0.4)$) node [right]{direzione della porta};
     \draw[overlay, ->] ($(pic cs:vhdl_port)+(0.0,0.1)$) -- ($(pic 
     cs:vhdl_port)+(0.8,0.1)$) node [right]{tipo della porta};
 \end{tikzpicture}
 Come per la sezione \texttt{GENERIC} anche la \texttt{PORT} comincia con un 
 identificativo seguito dalle parentesi, all'interno delle quali si definiscono 
 le diverse porte.
+Una porta può avere una modalità fra le seguenti:
+\begin{itemize}
+    \item \texttt{IN}: definisce una porta di solo input
+    \item \texttt{OUT}: definisce una porta di solo output
+    \item \texttt{INOUT}: definisce una porta bidirezionale
+    \item \texttt{BUFFER}: definisce una porta di output, che però può anche 
+    essere anche letta dall'interno
+\end{itemize}
+
+\subsection{Architecture}
+\subsection{Configuration}
+\subsection{Package}
 
 \end{document}
 
