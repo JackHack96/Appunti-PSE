@@ -1351,13 +1351,14 @@ Il protocollo \textbf{AMQP} (Advanced Message Queuing Protocol), fu creato da JP
 AMQP è un protocollo binario e supporta sia il modello basato su coda che quello publisher e subscriber. In AMQP non è presente il testamento e non
 sono previsti metadata nei messaggi. Condivide con MQTT alcune caratteristiche come il QoS a 3 livelli.
 
-I \textbf{protocolli industriali} sono soluzioni che vengono adottate soprattutto in ambito industriale.
-Ci sono due protocolli molto famosi:
+In ambito industriale ci sono due famosi protocolli di comunicazione:
 \begin{itemize}
     \item \textbf{SCADA}
     \item \textbf{ModBus}
 \end{itemize}
-In particolare, il protocollo ModBus mi permette di dialogare con le macchine e di estrapolare i dati in maniera da poter attribuirgli un significato. Infatti, assieme a ModBus viene spesso utilizzato \textbf{OPC-UA} che è uno standard in cui i dati devono assumere una certa struttura per poter essere interpretati dalle applicazioni in futuro applicate. Quindi OPC-UA mi permette di definire una certa \textbf{semantica} ai dati che la macchina produce. 
+In particolare, il protocollo ModBus permette di dialogare con le macchine e di estrapolare i dati in maniera da poter attribuirgli un significato.
+Infatti, assieme a ModBus viene spesso utilizzato \textbf{OPC-UA} che è uno standard in cui i dati devono assumere una certa struttura per poter essere interpretati
+dalle applicazioni in futuro applicate. Quindi OPC-UA mi permette di definire una certa \textbf{semantica} ai dati che la macchina produce. 
 Il \textbf{Core Platform} lo possiamo vedere come una sorta di grande hub o gateway in grado di dialogare con più protocoll diversi tra loro e di connettere moltissimi dispositivi assieme.
 Il core platform è composto da:
 \begin{itemize}
