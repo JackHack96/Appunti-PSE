@@ -1323,19 +1323,23 @@ Un client, quando si connette al broker, si può iscrivere come publisher o come
 usata dal broker per filtrare i messaggi da inviare ai client sottoscritti a quello specifico topic.
 I topic possono essere composti da un solo livello o a più livelli, infatti un client può decidere di sottoscriversi ad un solo livello o più usando le \textbf{wildcards}.
 Il protocollo MQTT prevede anche il \textbf{QoS} (Quality of Services), che garantisce entro certi limiti spedizione e ricezione del messaggio.
-Per la QoS ci sono 3 livelli:
+Sono previsti tre livelli di affidabilità del QoS:
 \begin{itemize}
     \item 0: Al massimo una volta
     \item 1: Almeno una volta
     \item 2: Esattamente una volta
 \end{itemize}
+
 Se vogliamo possiamo pensare all'invio del messaggio come ad un ack a livello TCP/IP, perchè anche qui ci sono sempre due parti di invio e ricezione del messaggio.
 \begin{itemize}
-    \item I messaggi che partono dal client e arrivo al broken: in questo caso il livello di QoS dipende dal livello che il client ha settato nel messaggio in cui ha appena inviato.
-    \item I messaggi dal broken verso il client: in questo caso il livello di QoS usato dal broken \textbf{non} è quello usato nel messaggio appena inviato dal client, ma, il livello di QoS che il client aveva settato in precendeza.
+    \item I messaggi che partono dal client e arrivano al broker: in questo caso il livello di QoS dipende dal livello che il client ha impostato
+    nel messaggio in cui ha appena inviato.
+    \item I messaggi dal broker verso il client: in questo caso il livello di QoS usato dal broker \textbf{non} è quello usato nel messaggio appena inviato dal client, 
+    ma il livello di QoS che il client aveva impostato in precendeza.
 \end{itemize}
-Il broken ha alcune funzionalità di store, il quale, salva l'ulitmo messaggio inviato in quel topic.\\
-Ogni volta che un client si collega al broken, oltre, al messaggio di benvenuto che si scambiano all'inizio, inviano anche il testamento di fine connessione, nel quale, viene definito ciò che deve fare il broken una volta che questo si disconnette dalla rete. Il broken, infatti, tiene in memoria il testamento finchè il client non esce dalla rete.
+Ogni volta che un client si collega al broker, oltre al messaggio di benvenuto che si scambiano all'inizio, inviano anche il testamento di fine connessione, 
+nel quale viene definito ciò che deve fare il broker una volta che questo si disconnette dalla rete. Il broker, infatti, tiene in memoria il testamento finché il 
+client non esce dalla rete.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.6\linewidth]{img/MQTT.png}
@@ -1343,8 +1347,9 @@ Ogni volta che un client si collega al broken, oltre, al messaggio di benvenuto 
     \label{fig:MQTT}
 \end{figure}
 
-
-Il protocollo \textbf{AMQP} (Advanced Message Queuing Protocol), è molto simile al protocollo MQTT. Anche questo protocollo è basato su TCP/IP. Il protocollo AMQP supporta sia il modello basato su coda che quello publisher e subscriber.
+Il protocollo \textbf{AMQP} (Advanced Message Queuing Protocol), fu creato da JP Morgan\textsuperscript{\textregistered} per applicazioni business.
+AMQP è un protocollo binario e supporta sia il modello basato su coda che quello publisher e subscriber. In AMQP non è presente il testamento e non
+sono previsti metadata nei messaggi. Condivide con MQTT alcune caratteristiche come il QoS a 3 livelli.
 
 I \textbf{protocolli industriali} sono soluzioni che vengono adottate soprattutto in ambito industriale.
 Ci sono due protocolli molto famosi:
