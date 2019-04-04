@@ -40,7 +40,8 @@
     minted options={tabsize=2,escapeinside=??}
 }
 \newtcblisting{systemc}[1]{ % SystemC source code environment, the argument is the file title
-    enhanced, 
+    enhanced,
+    breakable,
     title={#1\strut}, 
     fonttitle=\bfseries, 
     attach boxed title to top left={xshift=3.2mm,yshift=-0.50mm}, 
@@ -51,7 +52,8 @@
 }
 \newtcblisting{vhdl}[1]{ % VHDL source code environment, the argument is the 
 %file title
-    enhanced, 
+    enhanced,
+    breakable,
     title={#1\strut}, 
     fonttitle=\bfseries, 
     attach boxed title to top left={xshift=3.2mm,yshift=-0.50mm}, 
