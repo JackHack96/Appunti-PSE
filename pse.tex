@@ -1310,17 +1310,15 @@ In particolare, i due procotolli più usati e più "famosi" sono \textbf{MQTT} e
 \textbf{AMQP} a differenza di MQTT garantisce una minore latenza nel trasferimento dei dati, questo perchè l'uso del protocollo AMQP 
 è stato pensato per applicazioni IoT, infatti i dati che vengono trasferiti sono di piccole dimensioni e la trasmissione può essere asincrona.
 
-Alla base del protocollo \textbf{MQTT} (Message Queue Telemetry Transport) ci sta il concetto di \textbf{publisher e subscriber}.\\
-Usato principalmente per:
+Alla base del protocollo \textbf{MQTT} (Message Queue Telemetry Transport) si trova il classico concetto di \textbf{publisher e subscriber}.
+Viene ssato principalmente per:
 \begin{itemize}
     \item Invio di dati con una taglia molto piccola
-    \item dispositivi con molte restrizioni hw (embedded system)
+    \item Dispositivi dotati di hardware limitato
     \item Rete con poca banda e alta latenza
 \end{itemize}
-Il payload dei messaggi essendo binario risulta molto compatto.
-
-Come detto prima, questo protocollo sfrutta il concetto di \textbf{publisher e subscriber}.
-Tutti gli IoT dispositivi che sono presenti nella rete si connettono ad un \textbf{broken MQTT}.
+Il payload dei messaggi essendo binario risulta molto compatto. Come detto prima, questo protocollo sfrutta il concetto di \textbf{publisher e subscriber}.
+Tutti i dispositivi IoT che sono presenti nella rete si connettono a un \textbf{broker MQTT}.
 Il broken MQTT sopporta molteplici connessioni con un numero elevato di dispositivo connessi ad esso.
 Una volta che un client vuole connettersi al broken, invia un messaggio di "benvenuto" e si sottoscrive ad uno o più \textbf{topic}.
 Un topic è una stringa con formato UTF-8 che viene usata dal broken per filtrare i messaggi da inviare ai client sottoscritti a diversi topic. I topic possono essere composti da un solo livello o a più livelli.
