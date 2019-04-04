@@ -31,7 +31,7 @@
 \usetikzlibrary{shapes,snakes}
 
 % Create useful environments for source code listing
-\tcbuselibrary{skins,minted}
+\tcbuselibrary{skins,minted,breakable}
 \newtcblisting{sourcecode}[1]{ % Generic source code environment, the argument is the language
     boxrule=1pt,
     listing only,
@@ -1098,6 +1098,368 @@ begin
     count <= pre_count;
 end behav;
 \end{vhdl}
+\chapter{Internet of Things (IoT)}
+\section{Cos'è IoT}
+Internet of Things è una realtà ormai consolidata che vede l'unione di architetture cloud e sensori posti nell'ambiente per raccogliere dati ed elaborarli.
+I sistemi embedded ``tradizionali'' non sono stati sempre progettati per la comunicazione verso internet. Ora invece durante la progettazione non si pensa
+più alla singola istanza dell'oggetto ma a un sistema distribuito in grado di far comunicare più oggetti tra loro e di poter raccogliere e condividere
+i dati tramite la rete.
+In particolare, IoT è definita come un sistema provvisto di numerosi dispositivi, identificati da un codice univoco, in grado di trasferire dati verso
+internet senza l'ausilio d'interazione umana, ovvero, ci sono sensori che permettono l'acquisizione di dati dall'ambiente.
+\subsection{Scenari di applicazione}
+Gli scenari in cui i sistemi IoT sono presenti sono molti, in particolare:
+    \begin{itemize}
+        \item \textbf{Per la salute}: in questo primo scenario vediamo che dispositivi come uno \textit{smartband} oppure uno \textit{smartwatch} possono essere 
+        considerati come sistemi IoT. In questo caso, infatti, l'oggetto è in grado di rilevare senza l'intervento dell'uomo i passi, i movimenti, il battito cardiaco, ecc...,
+        computando tutto in tempo reale e salvando le informazioni raccolte in cloud.
+        \begin{figure}[h]
+            \centering
+            \includegraphics[width=0.7\linewidth]{img/benefits-of-iot-health-applications-of-iot.jpg}
+            \caption{IoT Health}
+            \label{fig:IoT-products-for-health}
+        \end{figure}
+        \item \textbf{Per la casa (Smart Home)}: il secondo scenario è rivolto alla domotica e all'uso di dispositivo per interagire con l'ambiente,
+        come ad esempio l'apertura di una porta attraverso attuatori, controllo automatico della temperatura oppure il comando remoto delle luci tramite lo smartphone.
+        \begin{figure}[h]
+            \centering
+            \includegraphics[width=0.7\linewidth]{img/smarthome.jpeg}
+            \caption{IoT SmartHome}
+            \label{fig:IoT-products-for-home}
+        \end{figure}
+        \item \textbf{Per la mobilità (Smart mobility)}: il terzo scenario prevede l'utilizzo dell'IoT per la creazione di smart mobility.
+        L'individuazione di parcheggi liberi è un esempio di sistema IoT dove, attraverso sensori e/o telecamere ti aiutano a trovare parcheggio.
+        Tutto questo, infatti, è basato su sensori che in tempo reale acquisiscono dati e trasmettono all'utente i dati richiesti. 
+        \begin{figure}[h]
+            \centering
+            \includegraphics[width=0.6\linewidth]{img/smartcity.png}
+            \caption{IoT smart mobility}
+            \label{fig:-IoT-products-for-smart-mobility}
+        \end{figure}
+        \item \textbf{Per l'energia (Smart grid/ energy)}: il quarto scenario vede l'IoT in un contesto in cui si ha una gestione intelligente dell'energia.
+        Questo sistema in maniera autonoma è in grado di indirizzare l'energia in tempo reale a dispositivi in cui in 
+        quel momento serve più energia rispetto ad altri, o eventualmente cercare di equilibrare l'energia nel migliore dei modi.
+        \begin{figure}[h]
+            \centering
+            \includegraphics[width=0.6\linewidth]{img/smart_grid.jpg}
+            \caption{IoT SmartGrid}
+            \label{fig:IoT-products-for-smart-grid}
+        \end{figure}
+        \item \textbf{Per l'agricoltura}: il quinto scenario prevede l'utilizzo di sistemi IoT per l'agricoltura smart.
+        Attraverso sensori di temperatura il sistema riesce a gestire il flusso d'acqua uscente per le piantagioni oppure riesce a capire quando accendere
+        o spegnere l'erogazione di acqua.
+        \begin{figure}[h]
+            \centering
+            \includegraphics[width=0.5\linewidth]{img/agricolture.jpg}
+            \caption{IoT Agricolture}
+            \label{fig:IoT-products-for-agricolture}
+        \end{figure}
+        \pagebreak
+        \item \textbf{Per le città smart (Smart Cities)}: il sesto scenario prevede l'applicazione di smart cities, ovvero un insieme di strategie di pianificazione
+        urbanistica che mirano all'ottimizzazione e all'innovazione dei servizi pubblici così da mettere in relazione le infrastrutture materiali delle città.
+        \begin{figure}[h]
+            \centering
+            \includegraphics[width=0.5\linewidth]{img/smart-city.jpg}
+            \caption{IoT Smart Cities}
+            \label{fig:IoT-products-for-smartcities}
+        \end{figure}
+        \item \textbf{Industria 4.0}: l'ultimo scenario che vede lo sviluppo di sistemi IoT sono le industrie 4.0, denominate IIoT, nelle quali si cerca d'incrementare
+        la produzione di oggetti e di migliorare la gestione e l'organizzazione dell'azienda stessa. L'industria 4.0 vuole rappresentare la quarta rivoluzione industriale.
+        L'obiettivo principale nell'industria 4.0 è arrivare a una produzione massimamente diversificata, quindi rendere la produzione molto flessibile
+        dal punto di vista produttivo. Il concetto di linea di produzione ben organizzata e inflessibile ora, con questo modello, viene abbandonata.
+        Si inizia a parlare di Internet of Services, ovvero, la distinzione tra oggetti e servizi è talmente sottile che tutta l'infrastruttura viene vista e usata
+        come un servizio.
+        All'interno dell'industria anche le macchine devono adeguarsi ai sistemi IoT, infatti, le macchine devono avere le seguenti caratteristiche:
+        \begin{itemize}
+            \item {Inter-operabile}
+            \item {Virtualizzabile}
+            \item {Real-time}
+            \item {Decentralizzata}
+            \item {Orientata ai servizi e modulare}
+        \end{itemize}
+        Con queste caratteristiche una macchina è in grado di dialogare con il sistema e con l'ambiente in cui si trova cercando quindi di inviare
+        informazioni sul proprio stato.
+        Alla fine i dati devono essere interpretati, perché se a un dato non viene data la semantica non serve a nulla. 
+        Una volta che i dati sono raccolti, vengono spediti nel cloud in cui verranno successivamente analizzati, rendendo possibile l'ottenimento di informazioni
+        sullo stato dell'intero sistema e di conseguenza, se necessario, riuscire a modificare la produzione in tempo reale.
+        \begin{figure}[h]
+            \centering
+            \includegraphics[width=0.5\linewidth]{img/industry.jpg}
+            \caption{IoT Industry 4.0}
+            \label{fig:IIoT}
+        \end{figure}
+    \end{itemize}
+    \pagebreak
+\subsection{Ingredienti per una soluzione IoT}
+La realizzazione di IoT è composta da alcuni layers:
+\begin{itemize}
+    \item \textbf{Device layer}
+    \begin{itemize}
+        \item Sensori
+        \item Attuatori
+        \item Tagged devices/objects
+    \end{itemize}
+    \item \textbf{Communication layer}
+    \begin{itemize}
+        \item Device gateway
+        \item Smart gateway
+        \item Protocollo di comunicazione
+        \item Protocollo applicativo
+        \item Protocollo industriale
+    \end{itemize}
+    \item \textbf{Core platform}
+    \begin{itemize}
+        \item Protocol Gateway
+        \item IoT Messagging Middleware
+        \item Data storage
+        \item Data aggregation/filter
+    \end{itemize}
+    \item \textbf{Analytics platform}
+    \begin{itemize}
+        \item Processo di streaming
+        \item Machine Learning
+        \item Eventi e report
+    \end{itemize}
+\end{itemize}
+È importante ricordare che, oltre, all'architettura, alla raccolta e gestione dei dati è importante avere un buon livello di
+sicurezza per l'invio e la gestione dei dati sensibili. 
 
+Nel \textbf{device layer} ci sono i dispositivi in sè, che permettono di acquisire dati e inviarli tramite internet.
+Di solito questi dispositivi embedded dotati di un micro-controllore, una memoria, eventuali interfacce e un sistema operativo dedicato
+in base al contesto in cui sono piazzati. Il più delle volte sono dotati di architetture low power per poter risparmiare energia,
+in quanto alimentati da batteria. Qualsiasi dispositivo IoT è dotato di sensori, senza i quali non sarebbe possibile la raccolta dati.
+
+I sensori possono essere di qualsiasi tipologia: elettronici, meccanici, idraulici, ecc. Ciò che li contraddistingue è il fatto di
+essere ``smart'', ovvero dotati già a livello sensoriale di componenti logiche che eseguono un minimo di data-processing.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\linewidth]{img/sensori.png}
+    \caption{IoT sensors}
+    \label{fig:Sensors}
+\end{figure}\\
+Gli \textbf{attuatori} sono dispositivi che permettono d'interagire con l'ambiente in cui si trovano, in base a un'azione inviata come input.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.6\linewidth]{img/TELEMETRY3.png}
+    \caption{IoT actuators}
+    \label{fig:Actuators}
+\end{figure}
+
+Esistono anche dispositivi non alimentati che permettono però di poter interagire attivamente con l'ambiente. Spesso questo avviene tramite meccanismi
+come l'RFID (Radio Frequency Identification), che tramite circuiti integrati alimentati durante l'utilizzo inviano i dati contenuti al lettore, che poi
+si occuperà dell'eventuale invio dei dati su internet.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.6\linewidth]{img/rfid.jpg}
+    \caption{IoT RFID}
+    \label{fig:RFID}
+\end{figure}
+
+Per avere, invece, una comunicazione \textbf{bidirezionale} si usa l'NFC (Near Field Communication), che lavorando con frequenze molto corte costringe 
+l'interazione ad avvenire in maniera ravvicinata.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.6\linewidth]{img/NFC-applicatioins.jpg}
+    \caption{IoT NFC}
+    \label{fig:NFC}
+\end{figure}
+\pagebreak
+
+Altra tecnologia molto diffusa sono i \textbf{beacons}, un'ulteriore forma di tagged devices, che sfrutta la tecnologia \textbf{bluetooth LE (Low Energy)}
+per trasmettere un segnale in broadcast per indicare, di solito, la posizione ad altri ricevitori bluetooth.
+La trasmissione bluetooth si può usare in diversi contesti.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.6\linewidth]{img/eddystone.png}
+    \caption{IoT Beacon}
+    \label{fig:Beacon}
+\end{figure}
+
+Il \textbf{Communication protocols} indica la parte di comunicazione dal dispositivo locale verso la rete internet. Qui si possono distinguere dispositivo che sono in grado di connettersi alla rete, attraverso WI-FI o rete Cellulare (3g/4g) e dispositivo che non sono in grado di connettersi direttamente a internet e quindi per poterlo fare hanno bisogno di connettersi ad un \textbf{gateway o un hub}, con il quale, è possibile arrivare alla rete esterna.
+
+Per poter capire meglio, immaginiamo di essere in un contesto industriale.
+Far comunicare tutte le macchine tra loro o comunque attraverso internet con una rete WI-FI diventa problematico, ecco perchè molte volte si la connesione via cavo restando in locale e successivamente con un gateway si esce verso internet.
+
+Nella parte di \textbf{Communication protocols} troviamo i \textbf{dispositivo gateway} che come accennato precedentemente, servono per "fare da tramite" da una rete locale piccola verso internet. In termini più specifici, il dispositivo gateway permette di interfacciare la rete locale con il protocollo TCP/IP verso internet e qunidi instradare i pacchetti nella destinazione corretta. 
+
+Oltre ai dispositivo gateway ci sono anche gli \textbf{smart gateway} definiti anche \textbf{gateway di confine} che sono dei dispositivo gateway con particolari caratteristiche.
+In particolare, uno smart gateway ha una propria memoria interna e delle specifiche appliccazioni embedded che permettono di analizzare i dati direttamente al loro interno prima di instradarli verso un gateway o hub centrale.\\
+Nello specifico gli smart gateway permettono:
+\begin{itemize}
+    \item \textbf{Filtraggio e Aggregazione di dati}: Cercano di dare una semantica ai dati ricevuti e scartare i dati inutili.
+    \item \textbf{Buffering}: quando un dispositivo rimane offline, hanno un certo buffer per mantenere in memoria i dati trasmessi
+    \item \textbf{Sincronizzazione}: aggiornamento dei dati mancanti o incompleti
+\end{itemize}
+Un'applicazione sul campo di questi smart gateway può essere messa in un contesto di smartcity. Per esempio, un lampione può fare da smart gateway e comunicare i dati da una zona ad un'altra.
+
+Come detto prima, gli smart gateway possono essere anche denominati gateway di confine, questo perchè possono essere impostati come frontiera da un'applicazione chiamata \textbf{Kora} che permette di costruirne uno.
+
+Gli stessi smartphone possono essere considerati dei gateway, infatti, nel momento in cui comunicano con una smartband oppure uno smartwatch, sono loro che ricevono i dati e li inviano alla rete.
+
+I \textbf{protocolli di comunicazione} sono responsabili per la connettività di rete.
+Alcuni protocolli più usati per una connessione diretta verso internet sono:
+\begin{itemize}
+    \item WI-FI
+    \item Ethernet
+    \item Rete cellulare (3g,4g, in futuro 5g)
+\end{itemize}
+Non tutti i protocolli sono in grado di connettere i dispositivo direttamente a internet. 
+Questi protocolli, infatti, hanno bisogno di un gateway per tradurre ciò che trasmettono nella rete locale verso internet (per intenderci serve lo standard TCP/IP).\\
+Di seguito elencati alcuni protocolli:
+\begin{itemize}
+    \item Bluetooth (LE)
+    \item RFID
+    \item NFC
+    \item Zigbee/Z-wave
+\end{itemize}
+I \textbf{protocolli di applicazione} sono posti ad un livello superiore rispetto al TCP/IP.\\
+Questi protocolli essendo a livello superiore, sfruttano comunque il livello TCP/IP, infatti, usano TCP/IP come un protocollo di trasporto per la comunicazione di messaggi specifici per ogni applicazione.\\
+Il trasferimento dei dati verso un cloud viene fatto con alcune applicazioni specifiche.
+In particolare, i due procotolli più usati e più "famosi" sono \textbf{MQTT} e \textbf{AMQP}.\\
+\textbf{MQTT} è stato pensato per trasferire dei dati che partono da un database locale, per esempio all'interno di un'azienda.\\
+\textbf{AMQP} a differenza di MQTT garantisce una minore latenza nel trasferimento dei dati, questo perchè l'uso del protocollo AMQP è stato pensato per applicazioni IoT, infatti, i dati che vengono trasferiti sono di piccole dimensioni e la trasmissione può essere asincrona.
+
+Alla base del protocollo \textbf{MQTT} (Message Queue Telemetry Transport) ci sta il concetto di \textbf{publisher e subscriber}.\\
+Usato principalmente per:
+\begin{itemize}
+    \item Invio di dati con una taglia molto piccola
+    \item dispositivi con molte restrizioni hw (embedded system)
+    \item Rete con poca banda e alta latenza
+\end{itemize}
+Il payload dei messaggi essendo binario risulta molto compatto.
+
+Come detto prima, questo protocollo sfrutta il concetto di \textbf{publisher e subscriber}.
+Tutti gli IoT dispositivi che sono presenti nella rete si connettono ad un \textbf{broken MQTT}.
+Il broken MQTT sopporta molteplici connessioni con un numero elevato di dispositivo connessi ad esso.
+Una volta che un client vuole connettersi al broken, invia un messaggio di "benvenuto" e si sottoscrive ad uno o più \textbf{topic}.
+Un topic è una stringa con formato UTF-8 che viene usata dal broken per filtrare i messaggi da inviare ai client sottoscritti a diversi topic. I topic possono essere composti da un solo livello o a più livelli.
+Un client può decidere di sottoscriversi ad uno o più topic usando una \textbf{wildcards}.
+Per identificare se un client è sottoscritto ad uno o più topic nella wildcard c'è un carattere speciale che identifica, single-level con la `$+$' o multi-level con `$\#$'.
+Il protocollo MQTT permette anche la \textbf{QoS}, ovvero, la Quality of Services che garantisce, con un livello di accuratezza, la garanzia che quel messsaggio venga inviato al destinatario.\\
+Per la QoS ci sono 3 livelli:
+\begin{itemize}
+    \item 0: Al massimo una volta
+    \item 1: Almeno una volta
+    \item 2: Esattamente una volta
+\end{itemize}
+Se vogliamo possiamo pensare all'invio del messaggio come ad un ack a livello TCP/IP, perchè anche qui ci sono sempre due parti di invio e ricezione del messaggio.
+\begin{itemize}
+    \item I messaggi che partono dal client e arrivo al broken: in questo caso il livello di QoS dipende dal livello che il client ha settato nel messaggio in cui ha appena inviato.
+    \item I messaggi dal broken verso il client: in questo caso il livello di QoS usato dal broken \textbf{non} è quello usato nel messaggio appena inviato dal client, ma, il livello di QoS che il client aveva settato in precendeza.
+\end{itemize}
+Il broken ha alcune funzionalità di store, il quale, salva l'ulitmo messaggio inviato in quel topic.\\
+Ogni volta che un client si collega al broken, oltre, al messaggio di benvenuto che si scambiano all'inizio, inviano anche il testamento di fine connessione, nel quale, viene definito ciò che deve fare il broken una volta che questo si disconnette dalla rete. Il broken, infatti, tiene in memoria il testamento finchè il client non esce dalla rete.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.6\linewidth]{img/MQTT.png}
+    \caption{MQTT}
+    \label{fig:MQTT}
+\end{figure}
+
+
+Il protocollo \textbf{AMQP} (Advanced Message Queuing Protocol), è molto simile al protocollo MQTT. Anche questo protocollo è basato su TCP/IP. Il protocollo AMQP supporta sia il modello basato su coda che quello publisher e subscriber.
+
+I \textbf{protocolli industriali} sono soluzioni che vengono adottate soprattutto in ambito industriale.
+Ci sono due protocolli molto famosi:
+\begin{itemize}
+    \item \textbf{SCADA}
+    \item \textbf{ModBus}
+\end{itemize}
+In particolare, il protocollo ModBus mi permette di dialogare con le macchine e di estrapolare i dati in maniera da poter attribuirgli un significato. Infatti, assieme a ModBus viene spesso utilizzato \textbf{OPC-UA} che è uno standard in cui i dati devono assumere una certa struttura per poter essere interpretati dalle applicazioni in futuro applicate. Quindi OPC-UA mi permette di definire una certa \textbf{semantica} ai dati che la macchina produce. 
+Il \textbf{Core Platform} lo possiamo vedere come una sorta di grande hub o gateway in grado di dialogare con più protocoll diversi tra loro e di connettere moltissimi dispositivi assieme.
+Il core platform è composto da:
+\begin{itemize}
+    \item \textbf{Protocol Gateway}
+    \item \textbf{IoT Messagging Middleware}
+    \item \textbf{Data storage}
+    \item  \textbf{Data aggregation / filter}
+\end{itemize}
+Il \textbf{Protocol Gateway} è la parte principale del Core Platform perchè è in grado di garantire la trasparenza di più protocolli diversi tra loro, gestendo la tua soluzione IoT.
+
+L'\textbf{IoT Messagging Middleware} è un software presente nel Core Platform molto simili ai protocolli visti in precedenza, MQTT e AMQP perchè adotta il modello publisher e subscriber.
+Prima abbiamo definito il Core Platform come un grande hub che è in grado di gestire moltissimi dispositivi connessi ad esso, tutto questo, infatti, è derivante dall'IoT Messagging Middleware che permette di avere elevate performance e tolleranza al guasto.\\
+Questo livello permette, inoltre, di lavorare con meta-modelli.\\
+Questi meta-modelli vengono definiti attraverso l'emissione di dati dai diversi dispositivi. I meta-modelli permettono di creare una soluzione dipendente dai dati inviati dai dispositivi e quelli che vengono usati piattaforma IoT. Tramite queste astrazioni il software è in grado di gestire più tipi di dati dai diversi protocolli. Infine, l'IoT Messagging Middleware permette uno storage di particolati intervalli di dati cercando di analizzare i dati che gli stanno arrivando. Poi capiamo meglio come i dati vegono analizzati nei livelli successivi.
+
+Nel livello \textbf{Data Storage} come dice il termine stesso è il livello che si occupa di immagazzinare i dati in Database per poter avere una copia locale.
+I Database più utilizzati sono:
+\begin{itemize}
+    \item \textbf{MongoDB}
+    \item \textbf{CouchDB}
+\end{itemize}
+Nel livello \textbf{Data Aggregation and filter} i dati vengono convertiti in alcuni formati specifici per poter poi essere mandati ad un software in grado di creare dei modelli di dati per essere interpretati.\pagebreak
+\\
+L'ultimo livello, per una soluzione IoT, è l'\textbf{Analytics Platform Layer} il quale permette di analizzare una grande mole di dati, di predirre un dato e di eseguire una determinata azione.
+Quest'ultimo livello è composto da:
+\begin{itemize}
+    \item \textbf{Stream processing}
+    \item \textbf{Machine Learning}
+    \item \textbf{Actionable Insights}
+\end{itemize}
+Nello \textbf{Stream processing} vengono ricevuti i dati in tempo reale dai dispositivi e analizzati in maniera da trovare delle correlazioni tra i differenti dati per poter poi successivamente usare quest'informazione per migliorare qualcosa.
+
+Per \textbf{Machine Learning} si intende l'apprendere delle nozioni sui dati che abbiamo senza esplicitamente creare degli algoritmi per farlo. CI sono 4 fasi principali per utilizzare questo meccanismo:
+\begin{itemize}
+    \item Capire il problema e trovare una soluzione
+    \item Pulire i dati e analizzare i dati filtrati
+    \item Creare dei modelli (es. IoT Messagging Middleware)
+    \item Fare training sui dati
+\end{itemize}
+Detto questo, però, ci sono 3 modi per eseguire Machine Learning:
+\begin{itemize}
+    \item \textbf{Supervised learning}: I dati che arrivano dall'esterno sono già etichettati, pronti per essere interpretati e riuscire a predirre i dati successivi.
+    \item \textbf{Unsupervised learning}: I dati che arrivano dall'esterno non sono già stati manipolati e qui è l'algoritmo stesso che capisce dove sono le correlazioni tra i dati. 
+    \item \textbf{Reinforcement learning}: Il sistema impara dai dati che riceve dall'ambiente esterno, per esempio, attrverso un sensore.
+\end{itemize}
+Il livello \textbf{Actionable Insights} permette di creare report degli eventi in base ai dati che vengon analizzati.
+
+\subsection{Cloud}
+Anche se non è parte integrante di una soluzione IoT il \textbf{Cloud} è la parte fondamentale per rendere il sistema IoT.\\
+Per Cloud si intende un'area in cui i dati da diversi dispositivi vengono inviati attraverso internet.\\
+Il Cloud può essere di due tipi:
+\begin{itemize}
+    \item \textbf{Privato}: La gestione e il mantenimento del cloud è a carico di chi ha creato il cloud, senza potersi appoggiare ad altri enti. Molte aziende utilizzano questa tipologia di cloud per paura di condiviedere i dati ad altri enti. 
+    \item \textbf{Pubblico}: La gestione e il mantenimento del cloud è a carico di chi gestisce il servizio di cloud. Chi usufruisce del servizio paga lo spazio che utilizza.
+\end{itemize}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.6\linewidth]{img/Cloud.png}
+    \caption{Cloud}
+    \label{fig:Cloud}
+\end{figure}
+La soluzione migliore è quella di creare un \textbf{Cloud Ibrido}, ovvero, che ha sia la parte di computazione privata, esempio dati sensibili di un'azienda, e la computazione dei dati ormai filtrati all'esterno, senza conpromettere la "privacy" dei dati.\\
+Nel momento in cui la scelta ricade su un cloud pubblico ci possono essere delle categorie di servizi offerti come: \textbf{IAAS – PAAS - SAAS}
+
+\textbf{IASS (Infrastructure as a Service)}: Questo tipo di servizio include offerte come lo spazio virtuale su server, connessioni di rete, larghezza di banda, indirizzi IP e bilanciatori di carico. Fisicamente, il gruppo di risorse hardware viene estratto da una moltitudine di server e reti solitamente distribuiti presso numerosi Data Centre, la cui manutenzione è responsabilità del provider del cloud.
+
+\textbf{PAAS (Platform as a Service)}: Consente agli utenti di creare applicazioni software utilizzando gli strumenti forniti dal provider.\\
+Le funzioni che possono essere incluse in un'offerta PaaS sono:
+\begin{itemize}
+    \item Sistema operativo
+    \item Ambiente di programmazione lato server
+    \item Sistema di gestione database
+    \item Software server
+    \item Assistenza
+    \item Archiviazione
+    \item Accesso di rete
+    \item Strumenti per progettazione e sviluppo 
+    \item Hosting
+\end{itemize}
+\textbf{SAAS (Software as a service)}: Indica qualsiasi servizio cloud tramite il quale i consumatori possono accedere ad applicazioni software tramite internet.\\
+Spesso viene chiamato "software on demand", in quanto il suo utilizzo è più simile a un noleggio del software che al suo acquisto.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{img/Cloud-service.png}
+    \caption{Cloud Services models}
+    \label{fig:Cloud Services models}
+\end{figure}
+\subsection{Architettura cloud per IoT}
+Alla fine, come detto all'inizio, una soluzione IoT oltre a tutti gli ingredienti visti fin'ora ha bisogno della rete internet per poter comunicare con il mondo esterno, ma soprattutto, dei cloud per poter racogliere in un'unico spazio i dati raccolti e poterli esaminare e ottenere dei risultati validi.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{img/arch_iot.png}
+    \caption{Cloud Architecture for IoT Solution}
+    \label{fig:Cloud Architecture for IoT Solution}
+\end{figure}
 \end{document}
 
