@@ -31,7 +31,7 @@
 \usetikzlibrary{shapes,snakes}
 
 % Create useful environments for source code listing
-\tcbuselibrary{skins,minted,breakable}
+\tcbuselibrary{skins,minted}
 \newtcblisting{sourcecode}[1]{ % Generic source code environment, the argument is the language
     boxrule=1pt,
     listing only,
@@ -41,7 +41,6 @@
 }
 \newtcblisting{systemc}[1]{ % SystemC source code environment, the argument is the file title
     enhanced,
-    breakable,
     title={#1\strut}, 
     fonttitle=\bfseries, 
     attach boxed title to top left={xshift=3.2mm,yshift=-0.50mm}, 
@@ -53,7 +52,6 @@
 \newtcblisting{vhdl}[1]{ % VHDL source code environment, the argument is the 
 %file title
     enhanced,
-    breakable,
     title={#1\strut}, 
     fonttitle=\bfseries, 
     attach boxed title to top left={xshift=3.2mm,yshift=-0.50mm}, 
