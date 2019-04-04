@@ -1319,11 +1319,10 @@ Viene usato principalmente per:
 \end{itemize}
 Il payload dei messaggi essendo binario risulta molto compatto. Come detto prima, questo protocollo sfrutta il concetto di \textbf{publisher e subscriber}.
 Tutti i dispositivi IoT che sono presenti nella rete si connettono a un \textbf{broker MQTT}, in grado di gestire molteplici connessioni.
-Una volta che un client vuole connettersi al broker, invia un messaggio di ``benvenuto'' e si sottoscrive ad uno o più \textbf{topic}.
-Un topic è una stringa con formato UTF-8 che viene usata dal broker per filtrare i messaggi da inviare ai client sottoscritti a diversi topic.
-I topic possono essere composti da un solo livello o a più livelli. Un client può decidere di sottoscriversi ad uno o più topic usando una \textbf{wildcards}.
-Per identificare se un client è sottoscritto a uno o più topic nella wildcard c'è un carattere speciale che identifica, single-level con la `$+$' o multi-level con `$\#$'.
-Il protocollo MQTT permette anche la \textbf{QoS} (Quality of Services) che garantisce, con un certo livello di accuratezza, la garanzia che quel messsaggio venga inviato al destinatario.\\
+Un client, quando si connette al broker, si può iscrivere come publisher o come subscriber in uno o più topic, che è una stringa in formato UTF-8 che viene
+usata dal broker per filtrare i messaggi da inviare ai client sottoscritti a quello specifico topic.
+I topic possono essere composti da un solo livello o a più livelli, infatti un client può decidere di sottoscriversi ad un solo livello o più usando le \textbf{wildcards}.
+Il protocollo MQTT prevede anche il \textbf{QoS} (Quality of Services), che garantisce entro certi limiti spedizione e ricezione del messaggio.
 Per la QoS ci sono 3 livelli:
 \begin{itemize}
     \item 0: Al massimo una volta
