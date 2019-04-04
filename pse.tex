@@ -1360,7 +1360,7 @@ In particolare, il protocollo ModBus permette di dialogare con le macchine e di 
 Infatti, assieme a ModBus viene spesso utilizzato \textbf{OPC-UA} che è uno standard in cui i dati devono assumere una certa struttura per poter essere interpretati
 dalle applicazioni in futuro applicate. Quindi OPC-UA mi permette di definire una certa \textbf{semantica} ai dati che la macchina produce.
 
-Il \textbf{Core Platform} lo possiamo vedere come una sorta di grande hub o gateway in grado di dialogare con più protocolli diversi tra loro e di connettere
+Il \textbf{core platform} lo possiamo vedere come una sorta di grande hub o gateway in grado di dialogare con più protocolli diversi tra loro e di connettere
 moltissimi dispositivi assieme. È composto da:
 \begin{itemize}
     \item \textbf{Protocol Gateway}
@@ -1378,46 +1378,51 @@ I meta-modelli permettono di creare una soluzione dipendente dai dati inviati da
 Tramite queste astrazioni il software è in grado di gestire più tipi di dati dai diversi protocolli. Infine, l'IoT Messagging Middleware permette
 uno storage di particolati intervalli di dati cercando di analizzare i dati che gli stanno arrivando.
 
-Nel livello \textbf{Data Storage} come dice il termine stesso è il livello che si occupa di immagazzinare i dati in Database per poter avere una copia locale.
+Nel livello \textbf{data storage} come dice il termine stesso è il livello che si occupa di immagazzinare i dati in Database per poter avere una copia locale.
 I Database più utilizzati sono:
 \begin{itemize}
     \item \textbf{MongoDB}
     \item \textbf{CouchDB}
 \end{itemize}
-Nel livello \textbf{Data Aggregation and filter} i dati vengono convertiti in alcuni formati specifici per poter poi essere mandati a un software in grado
+Nel livello \textbf{Data aggregation and filter} i dati vengono convertiti in alcuni formati specifici per poter poi essere mandati a un software in grado
 di creare dei modelli di dati per essere interpretati.
 
 L'ultimo livello, per una soluzione IoT, è l'\textbf{Analytics Platform Layer} il quale permette di analizzare una grande mole di dati,
 di predirre un dato e di eseguire una determinata azione. Quest'ultimo livello è composto da:
 \begin{itemize}
     \item \textbf{Stream processing}
-    \item \textbf{Machine Learning}
-    \item \textbf{Actionable Insights}
+    \item \textbf{Machine learning}
+    \item \textbf{Actionable insights}
 \end{itemize}
-Nello \textbf{Stream processing} vengono ricevuti i dati in tempo reale dai dispositivi e analizzati in maniera da trovare delle correlazioni tra i differenti dati per poter poi successivamente usare quest'informazione per migliorare qualcosa.
+Nello \textbf{stream processing} vengono ricevuti i dati in tempo reale dai dispositivi e analizzati in maniera da trovare delle correlazioni
+tra i differenti dati per poter poi successivamente usare quest'informazione per migliorare qualcosa.
 
-Per \textbf{Machine Learning} si intende l'apprendere delle nozioni sui dati che abbiamo senza esplicitamente creare degli algoritmi per farlo. CI sono 4 fasi principali per utilizzare questo meccanismo:
+Per \textbf{machine learning} si intende l'apprendere delle nozioni sui dati che abbiamo senza esplicitamente creare degli algoritmi per farlo.
+Ci sono 4 fasi principali per utilizzare questo meccanismo:
 \begin{itemize}
     \item Capire il problema e trovare una soluzione
     \item Pulire i dati e analizzare i dati filtrati
     \item Creare dei modelli (es. IoT Messagging Middleware)
     \item Fare training sui dati
 \end{itemize}
-Detto questo, però, ci sono 3 modi per eseguire Machine Learning:
+Detto questo ci sono 3 modi per eseguire machine learning:
 \begin{itemize}
-    \item \textbf{Supervised learning}: I dati che arrivano dall'esterno sono già etichettati, pronti per essere interpretati e riuscire a predirre i dati successivi.
-    \item \textbf{Unsupervised learning}: I dati che arrivano dall'esterno non sono già stati manipolati e qui è l'algoritmo stesso che capisce dove sono le correlazioni tra i dati. 
-    \item \textbf{Reinforcement learning}: Il sistema impara dai dati che riceve dall'ambiente esterno, per esempio, attrverso un sensore.
+    \item \textbf{Supervised learning}: i dati che arrivano dall'esterno sono già etichettati, pronti per essere interpretati e riuscire a predirre i dati successivi.
+    \item \textbf{Unsupervised learning}: i dati che arrivano dall'esterno non sono già stati manipolati e qui è l'algoritmo stesso che capisce dove sono le correlazioni tra i dati. 
+    \item \textbf{Reinforcement learning}: il sistema impara dai dati che riceve dall'ambiente esterno, per esempio, attrverso un sensore.
 \end{itemize}
-Il livello \textbf{Actionable Insights} permette di creare report degli eventi in base ai dati che vengon analizzati.
+
+Il livello \textbf{actionable insights} permette di creare report degli eventi in base ai dati che vengono analizzati.
 
 \subsection{Cloud}
-Anche se non è parte integrante di una soluzione IoT il \textbf{Cloud} è la parte fondamentale per rendere il sistema IoT.\\
-Per Cloud si intende un'area in cui i dati da diversi dispositivi vengono inviati attraverso internet.\\
-Il Cloud può essere di due tipi:
+Anche se non è parte integrante di una soluzione IoT il \textbf{cloud} è la parte fondamentale per rendere il sistema IoT.
+Per cloud si intende un'area in cui i dati da diversi dispositivi vengono inviati attraverso internet.
+Il cloud può essere di due tipi:
 \begin{itemize}
-    \item \textbf{Privato}: La gestione e il mantenimento del cloud è a carico di chi ha creato il cloud, senza potersi appoggiare ad altri enti. Molte aziende utilizzano questa tipologia di cloud per paura di condiviedere i dati ad altri enti. 
-    \item \textbf{Pubblico}: La gestione e il mantenimento del cloud è a carico di chi gestisce il servizio di cloud. Chi usufruisce del servizio paga lo spazio che utilizza.
+    \item \textbf{Privato}: la gestione e il mantenimento del cloud è a carico di chi ha creato il cloud, senza potersi appoggiare ad altri enti.
+    Molte aziende utilizzano questa tipologia di cloud per paura di condiviedere i dati ad altri enti. 
+    \item \textbf{Pubblico}: la gestione e il mantenimento del cloud è a carico di chi gestisce il servizio di cloud.
+    Chi usufruisce del servizio paga lo spazio che utilizza.
 \end{itemize}
 \begin{figure}[h]
     \centering
@@ -1425,12 +1430,18 @@ Il Cloud può essere di due tipi:
     \caption{Cloud}
     \label{fig:Cloud}
 \end{figure}
-La soluzione migliore è quella di creare un \textbf{Cloud Ibrido}, ovvero, che ha sia la parte di computazione privata, esempio dati sensibili di un'azienda, e la computazione dei dati ormai filtrati all'esterno, senza conpromettere la ``privacy'' dei dati.\\
-Nel momento in cui la scelta ricade su un cloud pubblico ci possono essere delle categorie di servizi offerti come: \textbf{IAAS – PAAS - SAAS}
+La soluzione migliore è quella di creare un \textbf{cloud ibrido}, ovvero, che ha sia la parte di computazione privata,
+esempio dati sensibili di un'azienda, e la computazione dei dati ormai filtrati all'esterno, senza conpromettere la ``privacy'' dei dati.
 
-\textbf{IASS (Infrastructure as a Service)}: Questo tipo di servizio include offerte come lo spazio virtuale su server, connessioni di rete, larghezza di banda, indirizzi IP e bilanciatori di carico. Fisicamente, il gruppo di risorse hardware viene estratto da una moltitudine di server e reti solitamente distribuiti presso numerosi Data Centre, la cui manutenzione è responsabilità del provider del cloud.
+Nel momento in cui la scelta ricade su un cloud pubblico ci possono essere delle categorie di servizi offerti come: \textbf{IaaS – PaaS - SaaS}.
 
-\textbf{PAAS (Platform as a Service)}: Consente agli utenti di creare applicazioni software utilizzando gli strumenti forniti dal provider.\\
+\paragraph{IaaS (Infrastructure as a Service)}
+Questo tipo di servizio include offerte come lo spazio virtuale su server, connessioni di rete, larghezza di banda,
+indirizzi IP e bilanciatori di carico. Fisicamente, il gruppo di risorse hardware viene estratto da una moltitudine
+di server e reti solitamente distribuiti presso numerosi data center, la cui manutenzione è responsabilità del provider del cloud.
+
+\paragraph{PaaS (Platform as a Service)}
+Consente agli utenti di creare applicazioni software utilizzando gli strumenti forniti dal provider.
 Le funzioni che possono essere incluse in un'offerta PaaS sono:
 \begin{itemize}
     \item Sistema operativo
@@ -1443,7 +1454,9 @@ Le funzioni che possono essere incluse in un'offerta PaaS sono:
     \item Strumenti per progettazione e sviluppo 
     \item Hosting
 \end{itemize}
-\textbf{SAAS (Software as a service)}: Indica qualsiasi servizio cloud tramite il quale i consumatori possono accedere ad applicazioni software tramite internet.\\
+
+\paragraph{SaaS (Software as a service)}
+Indica qualsiasi servizio cloud tramite il quale i consumatori possono accedere ad applicazioni software tramite internet.\\
 Spesso viene chiamato ``software on demand'', in quanto il suo utilizzo è più simile a un noleggio del software che al suo acquisto.
 \begin{figure}[h]
     \centering
