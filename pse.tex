@@ -1305,13 +1305,13 @@ Non tutti i protocolli sono in grado di connettere i dispositivi direttamente a 
 \end{itemize}
 I \textbf{protocolli di applicazione} poggiano, come nei normali PC general purpose, sul protocollo TCP/IP.
 Nel caso dei dispositivi IoT viene data molta enfasi all'uso del cloud, motivo per cui si sono creati protocolli specifici.
-In particolare, i due procotolli più usati e più "famosi" sono \textbf{MQTT} e \textbf{AMQP}.
+In particolare, i due procotolli più usati e più ``famosi'' sono \textbf{MQTT} e \textbf{AMQP}.
 \textbf{MQTT} è stato pensato per trasferire dei dati che partono da un database locale, per esempio all'interno di un'azienda.
 \textbf{AMQP} a differenza di MQTT garantisce una minore latenza nel trasferimento dei dati, questo perchè l'uso del protocollo AMQP 
 è stato pensato per applicazioni IoT, infatti i dati che vengono trasferiti sono di piccole dimensioni e la trasmissione può essere asincrona.
 
 Alla base del protocollo \textbf{MQTT} (Message Queue Telemetry Transport) si trova il classico concetto di \textbf{publisher e subscriber}.
-Viene ssato principalmente per:
+Viene usato principalmente per:
 \begin{itemize}
     \item Invio di dati con una taglia molto piccola
     \item Dispositivi dotati di hardware limitato
@@ -1319,12 +1319,12 @@ Viene ssato principalmente per:
 \end{itemize}
 Il payload dei messaggi essendo binario risulta molto compatto. Come detto prima, questo protocollo sfrutta il concetto di \textbf{publisher e subscriber}.
 Tutti i dispositivi IoT che sono presenti nella rete si connettono a un \textbf{broker MQTT}.
-Il broken MQTT sopporta molteplici connessioni con un numero elevato di dispositivo connessi ad esso.
-Una volta che un client vuole connettersi al broken, invia un messaggio di "benvenuto" e si sottoscrive ad uno o più \textbf{topic}.
-Un topic è una stringa con formato UTF-8 che viene usata dal broken per filtrare i messaggi da inviare ai client sottoscritti a diversi topic. I topic possono essere composti da un solo livello o a più livelli.
-Un client può decidere di sottoscriversi ad uno o più topic usando una \textbf{wildcards}.
+Il broker MQTT sopporta molteplici connessioni con un numero elevato di dispositivo connessi ad esso.
+Una volta che un client vuole connettersi al broker, invia un messaggio di ``benvenuto'' e si sottoscrive ad uno o più \textbf{topic}.
+Un topic è una stringa con formato UTF-8 che viene usata dal broker per filtrare i messaggi da inviare ai client sottoscritti a diversi topic.
+I topic possono essere composti da un solo livello o a più livelli. Un client può decidere di sottoscriversi ad uno o più topic usando una \textbf{wildcards}.
 Per identificare se un client è sottoscritto ad uno o più topic nella wildcard c'è un carattere speciale che identifica, single-level con la `$+$' o multi-level con `$\#$'.
-Il protocollo MQTT permette anche la \textbf{QoS}, ovvero, la Quality of Services che garantisce, con un livello di accuratezza, la garanzia che quel messsaggio venga inviato al destinatario.\\
+Il protocollo MQTT permette anche la \textbf{QoS} (Quality of Services) che garantisce, con un certo livello di accuratezza, la garanzia che quel messsaggio venga inviato al destinatario.\\
 Per la QoS ci sono 3 livelli:
 \begin{itemize}
     \item 0: Al massimo una volta
@@ -1416,7 +1416,7 @@ Il Cloud può essere di due tipi:
     \caption{Cloud}
     \label{fig:Cloud}
 \end{figure}
-La soluzione migliore è quella di creare un \textbf{Cloud Ibrido}, ovvero, che ha sia la parte di computazione privata, esempio dati sensibili di un'azienda, e la computazione dei dati ormai filtrati all'esterno, senza conpromettere la "privacy" dei dati.\\
+La soluzione migliore è quella di creare un \textbf{Cloud Ibrido}, ovvero, che ha sia la parte di computazione privata, esempio dati sensibili di un'azienda, e la computazione dei dati ormai filtrati all'esterno, senza conpromettere la ``privacy'' dei dati.\\
 Nel momento in cui la scelta ricade su un cloud pubblico ci possono essere delle categorie di servizi offerti come: \textbf{IAAS – PAAS - SAAS}
 
 \textbf{IASS (Infrastructure as a Service)}: Questo tipo di servizio include offerte come lo spazio virtuale su server, connessioni di rete, larghezza di banda, indirizzi IP e bilanciatori di carico. Fisicamente, il gruppo di risorse hardware viene estratto da una moltitudine di server e reti solitamente distribuiti presso numerosi Data Centre, la cui manutenzione è responsabilità del provider del cloud.
@@ -1435,7 +1435,7 @@ Le funzioni che possono essere incluse in un'offerta PaaS sono:
     \item Hosting
 \end{itemize}
 \textbf{SAAS (Software as a service)}: Indica qualsiasi servizio cloud tramite il quale i consumatori possono accedere ad applicazioni software tramite internet.\\
-Spesso viene chiamato "software on demand", in quanto il suo utilizzo è più simile a un noleggio del software che al suo acquisto.
+Spesso viene chiamato ``software on demand'', in quanto il suo utilizzo è più simile a un noleggio del software che al suo acquisto.
 \begin{figure}[h]
     \centering
     \includegraphics[width=1\linewidth]{img/Cloud-service.png}
