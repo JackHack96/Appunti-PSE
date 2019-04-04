@@ -1276,15 +1276,10 @@ per trasmettere un segnale in broadcast per indicare, di solito, la posizione ad
 Il \textbf{communication layer} indica la parte di comunicazione dal dispositivo locale verso la rete internet.
 Qui si possono distinguere dispositivi che sono in grado di connettersi alla rete, attraverso Wi-Fi o rete cellulare (3G/4G) e dispositivi che non sono 
 in grado di connettersi direttamente a internet e quindi per poterlo fare hanno bisogno di connettersi a un \textbf{gateway o un hub}, con il quale è possibile 
-arrivare alla rete esterna.
+arrivare alla rete esterna. Spesso il gateway sono anch'essi ``smart'': esso ha una propria memoria interna e delle specifiche appliccazioni embedded che 
+permettono di analizzare i dati direttamente sul posto prima di instradarli verso un altro gateway o un hub centrale.
 
-Per poter capire meglio, immaginiamo di essere in un contesto industriale.
-Far comunicare tutte le macchine tra loro o comunque attraverso internet con una rete Wi-Fi diventa problematico, ecco perché molte volte si usa la 
-connessione via cavo restando in locale e successivamente con un gateway si esce verso internet.
-
-Oltre ai dispositivo gateway ci sono anche gli \textbf{smart gateway} definiti anche \textbf{gateway di confine} che sono dei dispositivo gateway con particolari caratteristiche.
-In particolare, uno smart gateway ha una propria memoria interna e delle specifiche appliccazioni embedded che permettono di analizzare i dati direttamente al loro interno prima di instradarli verso un gateway o hub centrale.\\
-Nello specifico gli smart gateway permettono:
+Più specificamente, gli smart gateway permettono:
 \begin{itemize}
     \item \textbf{Filtraggio e Aggregazione di dati}: Cercano di dare una semantica ai dati ricevuti e scartare i dati inutili.
     \item \textbf{Buffering}: quando un dispositivo rimane offline, hanno un certo buffer per mantenere in memoria i dati trasmessi
