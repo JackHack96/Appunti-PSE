@@ -1370,10 +1370,13 @@ moltissimi dispositivi assieme. È composto da:
 \end{itemize}
 Il \textbf{Protocol Gateway} è la parte principale del Core Platform perchè è in grado di garantire la trasparenza di più protocolli diversi tra loro.
 
-L'\textbf{IoT Messagging Middleware} è un software presente nel Core Platform molto simile ai protocolli visti in precedenza (MQTT e AMQP) perchè adotta il modello publisher e subscriber.
-Prima abbiamo definito il Core Platform come un grande hub che è in grado di gestire moltissimi dispositivi connessi ad esso, tutto questo, infatti, è derivante dall'IoT Messagging Middleware che permette di avere elevate performance e tolleranza al guasto.\\
-Questo livello permette, inoltre, di lavorare con meta-modelli.\\
-Questi meta-modelli vengono definiti attraverso l'emissione di dati dai diversi dispositivi. I meta-modelli permettono di creare una soluzione dipendente dai dati inviati dai dispositivi e quelli che vengono usati piattaforma IoT. Tramite queste astrazioni il software è in grado di gestire più tipi di dati dai diversi protocolli. Infine, l'IoT Messagging Middleware permette uno storage di particolati intervalli di dati cercando di analizzare i dati che gli stanno arrivando. Poi capiamo meglio come i dati vegono analizzati nei livelli successivi.
+L'\textbf{IoT Messagging Middleware} è un software presente nel Core Platform molto simile ai protocolli visti in precedenza (MQTT e AMQP)
+perchè adotta il modello publisher e subscriber. Prima abbiamo definito il Core Platform come un grande hub che è in grado di gestire moltissimi dispositivi
+connessi ad esso: questo è possibile grazie all'IoT Messagging Middleware che permette di avere elevate performance e tolleranza al guasto.
+Questo livello permette, inoltre, di lavorare con meta-modelli, che vengono definiti attraverso l'emissione di dati dai diversi dispositivi.
+I meta-modelli permettono di creare una soluzione dipendente dai dati inviati dai dispositivi e quelli che vengono usati piattaforma IoT.
+Tramite queste astrazioni il software è in grado di gestire più tipi di dati dai diversi protocolli. Infine, l'IoT Messagging Middleware permette
+uno storage di particolati intervalli di dati cercando di analizzare i dati che gli stanno arrivando.
 
 Nel livello \textbf{Data Storage} come dice il termine stesso è il livello che si occupa di immagazzinare i dati in Database per poter avere una copia locale.
 I Database più utilizzati sono:
