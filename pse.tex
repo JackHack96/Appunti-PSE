@@ -1292,25 +1292,23 @@ sono loro che ricevono i dati e li inviano alla rete.
 I \textbf{protocolli di comunicazione} sono responsabili per la connettività di rete.
 Alcuni protocolli più usati per una connessione diretta verso internet sono:
 \begin{itemize}
-    \item WI-FI
+    \item Wi-Fi
     \item Ethernet
-    \item Rete cellulare (3g,4g, in futuro 5g)
+    \item Rete cellulare (3G,4G, in futuro 5G)
 \end{itemize}
-Non tutti i protocolli sono in grado di connettere i dispositivo direttamente a internet. 
-Questi protocolli, infatti, hanno bisogno di un gateway per tradurre ciò che trasmettono nella rete locale verso internet (per intenderci serve lo standard TCP/IP).\\
-Di seguito elencati alcuni protocolli:
+Non tutti i protocolli sono in grado di connettere i dispositivi direttamente a internet, ad esempio:
 \begin{itemize}
     \item Bluetooth (LE)
     \item RFID
     \item NFC
     \item Zigbee/Z-wave
 \end{itemize}
-I \textbf{protocolli di applicazione} sono posti ad un livello superiore rispetto al TCP/IP.\\
-Questi protocolli essendo a livello superiore, sfruttano comunque il livello TCP/IP, infatti, usano TCP/IP come un protocollo di trasporto per la comunicazione di messaggi specifici per ogni applicazione.\\
-Il trasferimento dei dati verso un cloud viene fatto con alcune applicazioni specifiche.
-In particolare, i due procotolli più usati e più "famosi" sono \textbf{MQTT} e \textbf{AMQP}.\\
-\textbf{MQTT} è stato pensato per trasferire dei dati che partono da un database locale, per esempio all'interno di un'azienda.\\
-\textbf{AMQP} a differenza di MQTT garantisce una minore latenza nel trasferimento dei dati, questo perchè l'uso del protocollo AMQP è stato pensato per applicazioni IoT, infatti, i dati che vengono trasferiti sono di piccole dimensioni e la trasmissione può essere asincrona.
+I \textbf{protocolli di applicazione} poggiano, come nei normali PC general purpose, sul protocollo TCP/IP.
+Nel caso dei dispositivi IoT viene data molta enfasi all'uso del cloud, motivo per cui si sono creati protocolli specifici.
+In particolare, i due procotolli più usati e più "famosi" sono \textbf{MQTT} e \textbf{AMQP}.
+\textbf{MQTT} è stato pensato per trasferire dei dati che partono da un database locale, per esempio all'interno di un'azienda.
+\textbf{AMQP} a differenza di MQTT garantisce una minore latenza nel trasferimento dei dati, questo perchè l'uso del protocollo AMQP 
+è stato pensato per applicazioni IoT, infatti i dati che vengono trasferiti sono di piccole dimensioni e la trasmissione può essere asincrona.
 
 Alla base del protocollo \textbf{MQTT} (Message Queue Telemetry Transport) ci sta il concetto di \textbf{publisher e subscriber}.\\
 Usato principalmente per:
